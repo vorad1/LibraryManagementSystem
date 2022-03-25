@@ -48,8 +48,8 @@ public class SignupPage extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         txt_contact = new app.bolivia.swing.JCTextField();
         jLabel15 = new javax.swing.JLabel();
-        rSMaterialButtonCircle1 = new rojerusan.RSMaterialButtonCircle();
-        rSMaterialButtonCircle2 = new rojerusan.RSMaterialButtonCircle();
+        btnLogin = new rojerusan.RSMaterialButtonCircle();
+        btnSignup = new rojerusan.RSMaterialButtonCircle();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -181,23 +181,23 @@ public class SignupPage extends javax.swing.JFrame {
         jLabel15.setText("Contact Number");
         jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 520, -1, -1));
 
-        rSMaterialButtonCircle1.setBackground(new java.awt.Color(51, 51, 255));
-        rSMaterialButtonCircle1.setText("LOGIN");
-        rSMaterialButtonCircle1.addActionListener(new java.awt.event.ActionListener() {
+        btnLogin.setBackground(new java.awt.Color(51, 51, 255));
+        btnLogin.setText("LOGIN");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rSMaterialButtonCircle1ActionPerformed(evt);
+                btnLoginActionPerformed(evt);
             }
         });
-        jPanel2.add(rSMaterialButtonCircle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 720, 220, 70));
+        jPanel2.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 720, 220, 70));
 
-        rSMaterialButtonCircle2.setBackground(new java.awt.Color(251, 51, 51));
-        rSMaterialButtonCircle2.setText("SIGNUP");
-        rSMaterialButtonCircle2.addActionListener(new java.awt.event.ActionListener() {
+        btnSignup.setBackground(new java.awt.Color(251, 51, 51));
+        btnSignup.setText("SIGNUP");
+        btnSignup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rSMaterialButtonCircle2ActionPerformed(evt);
+                btnSignupActionPerformed(evt);
             }
         });
-        jPanel2.add(rSMaterialButtonCircle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 640, 220, 70));
+        jPanel2.add(btnSignup, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 640, 220, 70));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 0, 560, 830));
 
@@ -221,13 +221,13 @@ public class SignupPage extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_contactActionPerformed
 
-    private void rSMaterialButtonCircle1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSMaterialButtonCircle1ActionPerformed
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_rSMaterialButtonCircle1ActionPerformed
+    }//GEN-LAST:event_btnLoginActionPerformed
 
-    private void rSMaterialButtonCircle2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSMaterialButtonCircle2ActionPerformed
+    private void btnSignupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignupActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_rSMaterialButtonCircle2ActionPerformed
+    }//GEN-LAST:event_btnSignupActionPerformed
 
     /**
      * @param args the command line arguments
@@ -265,6 +265,8 @@ public class SignupPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private rojerusan.RSMaterialButtonCircle btnLogin;
+    private rojerusan.RSMaterialButtonCircle btnSignup;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -282,8 +284,6 @@ public class SignupPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private rojerusan.RSMaterialButtonCircle rSMaterialButtonCircle1;
-    private rojerusan.RSMaterialButtonCircle rSMaterialButtonCircle2;
     private app.bolivia.swing.JCTextField txt_contact;
     private app.bolivia.swing.JCTextField txt_email;
     private app.bolivia.swing.JCTextField txt_password;
