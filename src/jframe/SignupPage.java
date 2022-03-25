@@ -5,9 +5,13 @@
  */
 package jframe;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import javax.swing.JOptionPane;
+
 /**
  *
- * @author Rudra Modh
+ * @author Dev Vora
  */
 public class SignupPage extends javax.swing.JFrame {
 
@@ -16,6 +20,46 @@ public class SignupPage extends javax.swing.JFrame {
      */
     public SignupPage() {
         initComponents();
+    }
+
+    //method to insert values in the user table 
+    public void insertSignupDetails() {
+        String name = txt_username.getText();
+        String pwd = txt_password.getText();
+        String email = txt_email.getText();
+        String contact = txt_contact.getText();
+
+        //using try catch as jdbc throws error which can be used to detect them
+        try {
+            Connection con = DBConnection.getConnection();
+
+            //sql statement that will be used to insert data into db table
+            String sql = "insert into users(name,password,email,contact) values(?,?,?,?)";
+
+            PreparedStatement pst = con.prepareStatement(sql);
+            
+            //providing values to placeholder 
+            pst.setString(1, name);
+            pst.setString(2, pwd);
+            pst.setString(3, email);
+            pst.setString(4, contact);
+            
+            //to run a non select query we need to run executeUpdate
+            //will return the number of affected rows
+            int updatedRowCount = pst.executeUpdate();
+            
+            //if record inserted succesfully 
+            if(updatedRowCount > 0){
+                JOptionPane.showMessageDialog(this, "Record Inserted Succesfully");   
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Record not Inserted");
+            }
+            
+        } catch (Exception e) {
+            //printing any exception
+             e.printStackTrace();
+        }
     }
 
     /**
@@ -48,8 +92,8 @@ public class SignupPage extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         txt_contact = new app.bolivia.swing.JCTextField();
         jLabel15 = new javax.swing.JLabel();
-        btnLogin = new rojerusan.RSMaterialButtonCircle();
-        btnSignup = new rojerusan.RSMaterialButtonCircle();
+        btn_Login = new rojerusan.RSMaterialButtonCircle();
+        btn_Signup = new rojerusan.RSMaterialButtonCircle();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -181,23 +225,23 @@ public class SignupPage extends javax.swing.JFrame {
         jLabel15.setText("Contact Number");
         jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 520, -1, -1));
 
-        btnLogin.setBackground(new java.awt.Color(51, 51, 255));
-        btnLogin.setText("LOGIN");
-        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+        btn_Login.setBackground(new java.awt.Color(51, 51, 255));
+        btn_Login.setText("LOGIN");
+        btn_Login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoginActionPerformed(evt);
+                btn_LoginActionPerformed(evt);
             }
         });
-        jPanel2.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 720, 220, 70));
+        jPanel2.add(btn_Login, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 720, 220, 70));
 
-        btnSignup.setBackground(new java.awt.Color(251, 51, 51));
-        btnSignup.setText("SIGNUP");
-        btnSignup.addActionListener(new java.awt.event.ActionListener() {
+        btn_Signup.setBackground(new java.awt.Color(251, 51, 51));
+        btn_Signup.setText("SIGNUP");
+        btn_Signup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSignupActionPerformed(evt);
+                btn_SignupActionPerformed(evt);
             }
         });
-        jPanel2.add(btnSignup, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 640, 220, 70));
+        jPanel2.add(btn_Signup, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 640, 220, 70));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 0, 560, 830));
 
@@ -221,13 +265,13 @@ public class SignupPage extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_contactActionPerformed
 
-    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+    private void btn_LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_LoginActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnLoginActionPerformed
+    }//GEN-LAST:event_btn_LoginActionPerformed
 
-    private void btnSignupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignupActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSignupActionPerformed
+    private void btn_SignupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SignupActionPerformed
+        insertSignupDetails();
+    }//GEN-LAST:event_btn_SignupActionPerformed
 
     /**
      * @param args the command line arguments
@@ -265,8 +309,8 @@ public class SignupPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private rojerusan.RSMaterialButtonCircle btnLogin;
-    private rojerusan.RSMaterialButtonCircle btnSignup;
+    private rojerusan.RSMaterialButtonCircle btn_Login;
+    private rojerusan.RSMaterialButtonCircle btn_Signup;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
