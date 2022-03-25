@@ -7,6 +7,7 @@ package jframe;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 
 /**
@@ -37,29 +38,85 @@ public class SignupPage extends javax.swing.JFrame {
             String sql = "insert into users(name,password,email,contact) values(?,?,?,?)";
 
             PreparedStatement pst = con.prepareStatement(sql);
-            
+
             //providing values to placeholder 
             pst.setString(1, name);
             pst.setString(2, pwd);
             pst.setString(3, email);
             pst.setString(4, contact);
-            
+
             //to run a non select query we need to run executeUpdate
             //will return the number of affected rows
             int updatedRowCount = pst.executeUpdate();
-            
+
             //if record inserted succesfully 
-            if(updatedRowCount > 0){
-                JOptionPane.showMessageDialog(this, "Record Inserted Succesfully");   
-            }
-            else{
+            if (updatedRowCount > 0) {
+                JOptionPane.showMessageDialog(this, "Record Inserted Succesfully");
+            } else {
                 JOptionPane.showMessageDialog(this, "Record not Inserted");
             }
-            
+
         } catch (Exception e) {
             //printing any exception
-             e.printStackTrace();
+            e.printStackTrace();
         }
+    }
+
+    //validation 
+    public boolean validateSignup() {
+        String name = txt_username.getText();
+        String pwd = txt_password.getText();
+        String email = txt_email.getText();
+        String contact = txt_contact.getText();
+
+        if (name.equals("")) {
+            JOptionPane.showMessageDialog(this, "Please Enter Username");
+            return false;
+        }
+        if (pwd.equals("")) {
+            JOptionPane.showMessageDialog(this, "Please Enter Password");
+            return false;
+        }
+        // pattern to perform email validation
+        if (email.equals("") || !email.matches("^.+@.+\\..+$")) {
+            JOptionPane.showMessageDialog(this, "Please Enter Valid Email");
+            return false;
+        }
+        if (contact.equals("")) {
+            JOptionPane.showMessageDialog(this, "Please Enter Contact Number");
+            return false;
+        }
+
+        return true;
+    }
+
+    //check duplication of users
+    public boolean checkDuplicateUser() {
+        String name = txt_username.getText();
+        boolean isExisting = false;
+
+        try {
+            //fetching data from database
+            Connection con = DBConnection.getConnection();
+
+            PreparedStatement pst = con.prepareStatement("select * from users where name = ?");
+
+            //providing value to placeholder 
+            pst.setString(1, name);
+
+            ResultSet rs = pst.executeQuery();
+
+            // if name already exists
+            if (rs.next()) {
+                isExisting = true;
+            } // if name does not exist
+            else {
+                isExisting = false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return isExisting;
     }
 
     /**
@@ -79,7 +136,7 @@ public class SignupPage extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        lbl_Close = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         txt_username = new app.bolivia.swing.JCTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -94,8 +151,10 @@ public class SignupPage extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         btn_Login = new rojerusan.RSMaterialButtonCircle();
         btn_Signup = new rojerusan.RSMaterialButtonCircle();
+        jLabel16 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -136,10 +195,15 @@ public class SignupPage extends javax.swing.JFrame {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8_Account_50px.png"))); // NOI18N
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, 50, 50));
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Sign Up Page");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, -1, -1));
+        lbl_Close.setFont(new java.awt.Font("Times New Roman", 0, 30)); // NOI18N
+        lbl_Close.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_Close.setText("X");
+        lbl_Close.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_CloseMouseClicked(evt);
+            }
+        });
+        jPanel2.add(lbl_Close, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 10, 30, 40));
 
         jLabel8.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -150,6 +214,14 @@ public class SignupPage extends javax.swing.JFrame {
         txt_username.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         txt_username.setFont(new java.awt.Font("Tahoma", 0, 17)); // NOI18N
         txt_username.setPlaceholder("Enter Username ...");
+        txt_username.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txt_usernameFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_usernameFocusLost(evt);
+            }
+        });
         txt_username.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_usernameActionPerformed(evt);
@@ -243,9 +315,14 @@ public class SignupPage extends javax.swing.JFrame {
         });
         jPanel2.add(btn_Signup, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 640, 220, 70));
 
+        jLabel16.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel16.setText("Sign Up Page");
+        jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, -1, -1));
+
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 0, 560, 830));
 
-        setSize(new java.awt.Dimension(1539, 867));
+        setSize(new java.awt.Dimension(1523, 828));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -270,8 +347,30 @@ public class SignupPage extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_LoginActionPerformed
 
     private void btn_SignupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SignupActionPerformed
-        insertSignupDetails();
+        if (validateSignup() == true) {
+            if (checkDuplicateUser() == false) {
+                insertSignupDetails();
+            } else {
+                JOptionPane.showMessageDialog(this, "Username already exists");
+            }
+        }
     }//GEN-LAST:event_btn_SignupActionPerformed
+
+    private void lbl_CloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_CloseMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_lbl_CloseMouseClicked
+
+    private void txt_usernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_usernameFocusLost
+        // to check whether username is already in use
+        if (checkDuplicateUser() == true) {
+            JOptionPane.showMessageDialog(this, "Username already exists");
+        }
+
+    }//GEN-LAST:event_txt_usernameFocusLost
+
+    private void txt_usernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_usernameFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_usernameFocusGained
 
     /**
      * @param args the command line arguments
@@ -318,16 +417,17 @@ public class SignupPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lbl_Close;
     private app.bolivia.swing.JCTextField txt_contact;
     private app.bolivia.swing.JCTextField txt_email;
     private app.bolivia.swing.JCTextField txt_password;
