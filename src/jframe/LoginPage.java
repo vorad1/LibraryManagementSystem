@@ -25,7 +25,19 @@ public class LoginPage extends javax.swing.JFrame {
     
     //validation
     public boolean validateLogin(){
+        String name = txt_username.getText();
+        String pwd = txt_password.getText();
 
+        if (name.equals("")) {
+            JOptionPane.showMessageDialog(this, "please enter username");
+            return false;
+        }
+        if (pwd.equals("")) {
+            JOptionPane.showMessageDialog(this, "please enter password");
+            return false;
+        }
+
+        return true;
     }
 
 
@@ -226,7 +238,7 @@ public class LoginPage extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_passwordActionPerformed
 
     private void btn_LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_LoginActionPerformed
-        // TODO add your handling code here:
+        validateLogin();
     }//GEN-LAST:event_btn_LoginActionPerformed
 
     private void btn_SignupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SignupActionPerformed
