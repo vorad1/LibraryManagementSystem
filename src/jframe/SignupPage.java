@@ -52,6 +52,9 @@ public class SignupPage extends javax.swing.JFrame {
             //if record inserted succesfully 
             if (updatedRowCount > 0) {
                 JOptionPane.showMessageDialog(this, "Record Inserted Succesfully");
+                LoginPage page = new LoginPage(); //redirecting to login page after sign up
+                page.setVisible(true);
+                dispose();
             } else {
                 JOptionPane.showMessageDialog(this, "Record not Inserted");
             }
