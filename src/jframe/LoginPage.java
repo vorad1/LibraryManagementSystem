@@ -6,6 +6,7 @@
 package jframe;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
@@ -38,6 +39,35 @@ public class LoginPage extends javax.swing.JFrame {
         }
 
         return true;
+    }
+    
+        //verify creds
+    public void login() {
+        String name = txt_username.getText();
+        String pwd = txt_password.getText();
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library_ms", "root", "");
+            PreparedStatement pst = con.prepareStatement("select * from users where name = ? and password = ?");
+
+            pst.setString(1, name);
+            pst.setString(2, pwd);
+
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) { // for valid credentials
+                JOptionPane.showMessageDialog(this, "login successful"); //display message
+                HomePage home = new HomePage();
+                home.setVisible(true);
+                this.dispose();
+
+            } else {
+                JOptionPane.showMessageDialog(this, "incorrect username or password"); // for invalid credentials           
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
 
@@ -238,7 +268,9 @@ public class LoginPage extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_passwordActionPerformed
 
     private void btn_LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_LoginActionPerformed
-        validateLogin();
+        if (validateLogin()) {
+           login();
+        }
     }//GEN-LAST:event_btn_LoginActionPerformed
 
     private void btn_SignupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SignupActionPerformed
