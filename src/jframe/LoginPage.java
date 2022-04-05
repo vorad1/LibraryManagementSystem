@@ -70,36 +70,6 @@ public class LoginPage extends javax.swing.JFrame {
 
     }
 
-
-    //check duplication of users
-    public boolean checkDuplicateUser() {
-        String name = txt_username.getText();
-        boolean isExisting = false;
-
-        try {
-            //fetching data from database
-            Connection con = DBConnection.getConnection();
-
-            PreparedStatement pst = con.prepareStatement("select * from users where name = ?");
-
-            //providing value to placeholder 
-            pst.setString(1, name);
-
-            ResultSet rs = pst.executeQuery();
-
-            // if name already exists
-            if (rs.next()) {
-                isExisting = true;
-            } // if name does not exist
-            else {
-                isExisting = false;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return isExisting;
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
