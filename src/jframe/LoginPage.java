@@ -13,12 +13,12 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Dev Vora
+ * @author Rudra Modh
  */
 public class LoginPage extends javax.swing.JFrame {
 
     /**
-     * Creates new form SignupPage
+     * Creates new form Login form
      */
     public LoginPage() {
         initComponents();
