@@ -138,7 +138,7 @@ public class LoginPage extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8_Account_50px.png"))); // NOI18N
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 130, 90));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 50, 80));
 
         lbl_Close.setFont(new java.awt.Font("Times New Roman", 0, 30)); // NOI18N
         lbl_Close.setForeground(new java.awt.Color(255, 255, 255));
@@ -182,7 +182,7 @@ public class LoginPage extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8_Secure_50px.png"))); // NOI18N
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, 130, 90));
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, 60, 80));
 
         jLabel11.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
