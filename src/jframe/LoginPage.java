@@ -13,12 +13,12 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Dev Vora
+ * @author Rudra Modh
  */
 public class LoginPage extends javax.swing.JFrame {
 
     /**
-     * Creates new form SignupPage
+     * Creates new form Login form
      */
     public LoginPage() {
         initComponents();
@@ -68,36 +68,6 @@ public class LoginPage extends javax.swing.JFrame {
             e.printStackTrace();
         }
 
-    }
-
-
-    //check duplication of users
-    public boolean checkDuplicateUser() {
-        String name = txt_username.getText();
-        boolean isExisting = false;
-
-        try {
-            //fetching data from database
-            Connection con = DBConnection.getConnection();
-
-            PreparedStatement pst = con.prepareStatement("select * from users where name = ?");
-
-            //providing value to placeholder 
-            pst.setString(1, name);
-
-            ResultSet rs = pst.executeQuery();
-
-            // if name already exists
-            if (rs.next()) {
-                isExisting = true;
-            } // if name does not exist
-            else {
-                isExisting = false;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return isExisting;
     }
 
     /**
