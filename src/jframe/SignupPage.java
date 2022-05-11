@@ -138,20 +138,20 @@ public class SignupPage extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
+        lblUsernameLogo = new javax.swing.JLabel();
         lbl_Close = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         txt_username = new app.bolivia.swing.JCTextField();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        lblUsername = new javax.swing.JLabel();
+        lblPasswordLogo = new javax.swing.JLabel();
+        lblPassword = new javax.swing.JLabel();
         txt_password = new app.bolivia.swing.JCTextField();
-        jLabel12 = new javax.swing.JLabel();
+        lblEmailLogo = new javax.swing.JLabel();
         txt_email = new app.bolivia.swing.JCTextField();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
+        lblEmail = new javax.swing.JLabel();
+        lblContactNumberLogo = new javax.swing.JLabel();
         txt_contact = new app.bolivia.swing.JCTextField();
-        jLabel15 = new javax.swing.JLabel();
+        lblContactNumber = new javax.swing.JLabel();
         btn_Login = new rojerusan.RSMaterialButtonCircle();
         btn_Signup = new rojerusan.RSMaterialButtonCircle();
         jLabel16 = new javax.swing.JLabel();
@@ -193,10 +193,10 @@ public class SignupPage extends javax.swing.JFrame {
         jPanel2.setFont(new java.awt.Font("Tahoma", 0, 17)); // NOI18N
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel4.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8_Account_50px.png"))); // NOI18N
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, 50, 50));
+        lblUsernameLogo.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
+        lblUsernameLogo.setForeground(new java.awt.Color(255, 255, 255));
+        lblUsernameLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8_Account_50px.png"))); // NOI18N
+        jPanel2.add(lblUsernameLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, 50, 50));
 
         lbl_Close.setFont(new java.awt.Font("Times New Roman", 0, 30)); // NOI18N
         lbl_Close.setForeground(new java.awt.Color(255, 255, 255));
@@ -232,20 +232,20 @@ public class SignupPage extends javax.swing.JFrame {
         });
         jPanel2.add(txt_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 260, -1));
 
-        jLabel9.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Username");
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, -1, -1));
+        lblUsername.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
+        lblUsername.setForeground(new java.awt.Color(255, 255, 255));
+        lblUsername.setText("Username");
+        jPanel2.add(lblUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, -1, -1));
 
-        jLabel10.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8_Secure_50px.png"))); // NOI18N
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 350, 50, 50));
+        lblPasswordLogo.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
+        lblPasswordLogo.setForeground(new java.awt.Color(255, 255, 255));
+        lblPasswordLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8_Secure_50px.png"))); // NOI18N
+        jPanel2.add(lblPasswordLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 350, 50, 50));
 
-        jLabel11.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("Password");
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, -1, -1));
+        lblPassword.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
+        lblPassword.setForeground(new java.awt.Color(255, 255, 255));
+        lblPassword.setText("Password");
+        jPanel2.add(lblPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, -1, -1));
 
         txt_password.setBackground(new java.awt.Color(102, 102, 255));
         txt_password.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
@@ -258,10 +258,10 @@ public class SignupPage extends javax.swing.JFrame {
         });
         jPanel2.add(txt_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 360, 260, -1));
 
-        jLabel12.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8_Secured_Letter_50px.png"))); // NOI18N
-        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 450, 50, 50));
+        lblEmailLogo.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
+        lblEmailLogo.setForeground(new java.awt.Color(255, 255, 255));
+        lblEmailLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8_Secured_Letter_50px.png"))); // NOI18N
+        jPanel2.add(lblEmailLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 450, 50, 50));
 
         txt_email.setBackground(new java.awt.Color(102, 102, 255));
         txt_email.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
@@ -274,15 +274,15 @@ public class SignupPage extends javax.swing.JFrame {
         });
         jPanel2.add(txt_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 460, 260, -1));
 
-        jLabel13.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setText("Email");
-        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 420, -1, -1));
+        lblEmail.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
+        lblEmail.setForeground(new java.awt.Color(255, 255, 255));
+        lblEmail.setText("Email");
+        jPanel2.add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 420, -1, -1));
 
-        jLabel14.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8_Google_Mobile_50px.png"))); // NOI18N
-        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 550, 50, 50));
+        lblContactNumberLogo.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
+        lblContactNumberLogo.setForeground(new java.awt.Color(255, 255, 255));
+        lblContactNumberLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8_Google_Mobile_50px.png"))); // NOI18N
+        jPanel2.add(lblContactNumberLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 550, 50, 50));
 
         txt_contact.setBackground(new java.awt.Color(102, 102, 255));
         txt_contact.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
@@ -295,10 +295,10 @@ public class SignupPage extends javax.swing.JFrame {
         });
         jPanel2.add(txt_contact, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 560, 260, -1));
 
-        jLabel15.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setText("Contact Number");
-        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 520, -1, -1));
+        lblContactNumber.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
+        lblContactNumber.setForeground(new java.awt.Color(255, 255, 255));
+        lblContactNumber.setText("Contact Number");
+        jPanel2.add(lblContactNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 520, -1, -1));
 
         btn_Login.setBackground(new java.awt.Color(51, 51, 255));
         btn_Login.setText("LOGIN");
@@ -414,22 +414,22 @@ public class SignupPage extends javax.swing.JFrame {
     private rojerusan.RSMaterialButtonCircle btn_Login;
     private rojerusan.RSMaterialButtonCircle btn_Signup;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblContactNumber;
+    private javax.swing.JLabel lblContactNumberLogo;
+    private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblEmailLogo;
+    private javax.swing.JLabel lblPassword;
+    private javax.swing.JLabel lblPasswordLogo;
+    private javax.swing.JLabel lblUsername;
+    private javax.swing.JLabel lblUsernameLogo;
     private javax.swing.JLabel lbl_Close;
     private app.bolivia.swing.JCTextField txt_contact;
     private app.bolivia.swing.JCTextField txt_email;
