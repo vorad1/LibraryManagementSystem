@@ -19,8 +19,8 @@ import javax.swing.table.TableModel;
  */
 public class ManageBooks extends javax.swing.JFrame {
 
-    String book_name, author;
-    int book_id, quantity;
+    String book_name, author, department;
+    int book_id;
     DefaultTableModel model;
    
     
@@ -46,9 +46,9 @@ public class ManageBooks extends javax.swing.JFrame {
                 String bookId = rs.getString("book_id");
                 String bookName = rs.getString("book_name");
                 String author = rs.getString("author");
-                int quantity = rs.getInt("quantity");
+                String department = rs.getString("department");
                 
-                Object [] obj = {bookId,bookName,author,quantity};
+                Object [] obj = {bookId,bookName,author,department};
                 
                 // using a model to set the values in the table
                 model = (DefaultTableModel)tbl_bookDetails.getModel();
@@ -57,9 +57,7 @@ public class ManageBooks extends javax.swing.JFrame {
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }
-        
-        
+        }      
     }
             
             
@@ -88,7 +86,7 @@ public class ManageBooks extends javax.swing.JFrame {
         txt_AuthorName = new app.bolivia.swing.JCTextField();
         lblQuantityLogo = new javax.swing.JLabel();
         lblQuantity = new javax.swing.JLabel();
-        txt_Quantity = new app.bolivia.swing.JCTextField();
+        txt_Department = new app.bolivia.swing.JCTextField();
         btn_Login = new rojerusan.RSMaterialButtonCircle();
         btn_Login1 = new rojerusan.RSMaterialButtonCircle();
         btn_Login2 = new rojerusan.RSMaterialButtonCircle();
@@ -234,27 +232,27 @@ public class ManageBooks extends javax.swing.JFrame {
 
         lblQuantity.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
         lblQuantity.setForeground(new java.awt.Color(255, 255, 255));
-        lblQuantity.setText("Enter Quantity: ");
+        lblQuantity.setText("Enter Department: ");
         jPanel1.add(lblQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 510, -1, -1));
 
-        txt_Quantity.setBackground(new java.awt.Color(102, 102, 255));
-        txt_Quantity.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
-        txt_Quantity.setFont(new java.awt.Font("Tahoma", 0, 17)); // NOI18N
-        txt_Quantity.setPlaceholder("Enter Quantity ...");
-        txt_Quantity.addFocusListener(new java.awt.event.FocusAdapter() {
+        txt_Department.setBackground(new java.awt.Color(102, 102, 255));
+        txt_Department.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
+        txt_Department.setFont(new java.awt.Font("Tahoma", 0, 17)); // NOI18N
+        txt_Department.setPlaceholder("Enter Department ...");
+        txt_Department.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                txt_QuantityFocusGained(evt);
+                txt_DepartmentFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txt_QuantityFocusLost(evt);
+                txt_DepartmentFocusLost(evt);
             }
         });
-        txt_Quantity.addActionListener(new java.awt.event.ActionListener() {
+        txt_Department.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_QuantityActionPerformed(evt);
+                txt_DepartmentActionPerformed(evt);
             }
         });
-        jPanel1.add(txt_Quantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 550, 320, -1));
+        jPanel1.add(txt_Department, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 550, 320, -1));
 
         btn_Login.setBackground(new java.awt.Color(255, 51, 51));
         btn_Login.setText("Delete");
@@ -346,7 +344,7 @@ public class ManageBooks extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Book ID ", "Book Name", "Author", "Quantity"
+                "Book ID ", "Book Name", "Author", "Department"
             }
         ));
         tbl_bookDetails.setColorBackgoundHead(new java.awt.Color(102, 102, 255));
@@ -420,18 +418,18 @@ public class ManageBooks extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_AuthorNameActionPerformed
 
-    private void txt_QuantityFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_QuantityFocusGained
+    private void txt_DepartmentFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_DepartmentFocusGained
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_QuantityFocusGained
+    }//GEN-LAST:event_txt_DepartmentFocusGained
 
-    private void txt_QuantityFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_QuantityFocusLost
+    private void txt_DepartmentFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_DepartmentFocusLost
         // to check whether username is already in use
         
-    }//GEN-LAST:event_txt_QuantityFocusLost
+    }//GEN-LAST:event_txt_DepartmentFocusLost
 
-    private void txt_QuantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_QuantityActionPerformed
+    private void txt_DepartmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_DepartmentActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_QuantityActionPerformed
+    }//GEN-LAST:event_txt_DepartmentActionPerformed
 
     private void btn_LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_LoginActionPerformed
         // TODO add your handling code here:
@@ -459,7 +457,7 @@ public class ManageBooks extends javax.swing.JFrame {
         txt_BookID.setText(model.getValueAt(rowNo, 0).toString());
         txt_BookName.setText(model.getValueAt(rowNo, 1).toString());
         txt_AuthorName.setText(model.getValueAt(rowNo, 2).toString());
-        txt_Quantity.setText(model.getValueAt(rowNo, 3).toString());
+        txt_Department.setText(model.getValueAt(rowNo, 3).toString());
         
     }//GEN-LAST:event_tbl_bookDetailsMouseClicked
 
@@ -523,6 +521,6 @@ public class ManageBooks extends javax.swing.JFrame {
     private app.bolivia.swing.JCTextField txt_AuthorName;
     private app.bolivia.swing.JCTextField txt_BookID;
     private app.bolivia.swing.JCTextField txt_BookName;
-    private app.bolivia.swing.JCTextField txt_Quantity;
+    private app.bolivia.swing.JCTextField txt_Department;
     // End of variables declaration//GEN-END:variables
 }

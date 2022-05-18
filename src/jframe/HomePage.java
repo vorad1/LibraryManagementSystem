@@ -76,24 +76,24 @@ public class HomePage extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
+        admnHomePage = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
+        admnLMS_Dashboard = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
+        admnIssueBook = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
-        jLabel10 = new javax.swing.JLabel();
+        admnReturnBook = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
+        admnViewRecords = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
+        admnViewIssuedBooks = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
+        admnManageBooks = new javax.swing.JLabel();
         jPanel12 = new javax.swing.JPanel();
-        jLabel14 = new javax.swing.JLabel();
+        admnManageStudents = new javax.swing.JLabel();
         jPanel13 = new javax.swing.JPanel();
-        jLabel15 = new javax.swing.JLabel();
+        admnDefaultersList = new javax.swing.JLabel();
         jPanel14 = new javax.swing.JPanel();
         jPanel15 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
@@ -183,11 +183,11 @@ public class HomePage extends javax.swing.JFrame {
         jPanel5.setBackground(new java.awt.Color(255, 51, 51));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel6.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adminIcons/icons8_Home_26px_2.png"))); // NOI18N
-        jLabel6.setText("     Home Page");
-        jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 180, 30));
+        admnHomePage.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 18)); // NOI18N
+        admnHomePage.setForeground(new java.awt.Color(255, 255, 255));
+        admnHomePage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adminIcons/icons8_Home_26px_2.png"))); // NOI18N
+        admnHomePage.setText("     Home Page");
+        jPanel5.add(admnHomePage, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 180, 30));
 
         jPanel3.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 340, 60));
 
@@ -199,88 +199,93 @@ public class HomePage extends javax.swing.JFrame {
         jPanel6.setBackground(new java.awt.Color(51, 51, 51));
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel8.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adminIcons/icons8_Library_32px.png"))); // NOI18N
-        jLabel8.setText("   LMS Dashboard");
-        jPanel6.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 200, 30));
+        admnLMS_Dashboard.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 18)); // NOI18N
+        admnLMS_Dashboard.setForeground(new java.awt.Color(153, 153, 153));
+        admnLMS_Dashboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adminIcons/icons8_Library_32px.png"))); // NOI18N
+        admnLMS_Dashboard.setText("   LMS Dashboard");
+        jPanel6.add(admnLMS_Dashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 200, 30));
 
         jPanel3.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 340, 60));
 
         jPanel7.setBackground(new java.awt.Color(51, 51, 51));
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel9.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 18)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adminIcons/icons8_Sell_26px.png"))); // NOI18N
-        jLabel9.setText("   Issue Book");
-        jPanel7.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 200, 30));
+        admnIssueBook.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 18)); // NOI18N
+        admnIssueBook.setForeground(new java.awt.Color(153, 153, 153));
+        admnIssueBook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adminIcons/icons8_Sell_26px.png"))); // NOI18N
+        admnIssueBook.setText("   Issue Book");
+        jPanel7.add(admnIssueBook, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 200, 30));
 
         jPanel3.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 430, 340, 60));
 
         jPanel8.setBackground(new java.awt.Color(51, 51, 51));
         jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel10.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 18)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adminIcons/icons8_Return_Purchase_26px.png"))); // NOI18N
-        jLabel10.setText("   Return Book");
-        jPanel8.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 200, 30));
+        admnReturnBook.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 18)); // NOI18N
+        admnReturnBook.setForeground(new java.awt.Color(153, 153, 153));
+        admnReturnBook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adminIcons/icons8_Return_Purchase_26px.png"))); // NOI18N
+        admnReturnBook.setText("   Return Book");
+        jPanel8.add(admnReturnBook, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 200, 30));
 
         jPanel3.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 510, 340, 60));
 
         jPanel9.setBackground(new java.awt.Color(51, 51, 51));
         jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel11.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 18)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adminIcons/icons8_View_Details_26px.png"))); // NOI18N
-        jLabel11.setText("   View Records");
-        jPanel9.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 200, 30));
+        admnViewRecords.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 18)); // NOI18N
+        admnViewRecords.setForeground(new java.awt.Color(153, 153, 153));
+        admnViewRecords.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adminIcons/icons8_View_Details_26px.png"))); // NOI18N
+        admnViewRecords.setText("   View Records");
+        jPanel9.add(admnViewRecords, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 200, 30));
 
         jPanel3.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 580, 340, 60));
 
         jPanel10.setBackground(new java.awt.Color(51, 51, 51));
         jPanel10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel12.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 18)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adminIcons/icons8_Books_26px.png"))); // NOI18N
-        jLabel12.setText("   View Issued Books");
-        jPanel10.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 220, 30));
+        admnViewIssuedBooks.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 18)); // NOI18N
+        admnViewIssuedBooks.setForeground(new java.awt.Color(153, 153, 153));
+        admnViewIssuedBooks.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adminIcons/icons8_Books_26px.png"))); // NOI18N
+        admnViewIssuedBooks.setText("   View Issued Books");
+        jPanel10.add(admnViewIssuedBooks, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 220, 30));
 
         jPanel3.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 650, 340, 60));
 
         jPanel11.setBackground(new java.awt.Color(51, 51, 51));
         jPanel11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel13.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 18)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adminIcons/icons8_Book_26px.png"))); // NOI18N
-        jLabel13.setText("   Manage Books");
-        jPanel11.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 200, 30));
+        admnManageBooks.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 18)); // NOI18N
+        admnManageBooks.setForeground(new java.awt.Color(153, 153, 153));
+        admnManageBooks.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adminIcons/icons8_Book_26px.png"))); // NOI18N
+        admnManageBooks.setText("   Manage Books");
+        admnManageBooks.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                admnManageBooksMouseClicked(evt);
+            }
+        });
+        jPanel11.add(admnManageBooks, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 200, 30));
 
         jPanel3.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 340, 60));
 
         jPanel12.setBackground(new java.awt.Color(51, 51, 51));
         jPanel12.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel14.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 18)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adminIcons/icons8_Read_Online_26px.png"))); // NOI18N
-        jLabel14.setText("   Manage Students");
-        jPanel12.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 230, 30));
+        admnManageStudents.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 18)); // NOI18N
+        admnManageStudents.setForeground(new java.awt.Color(153, 153, 153));
+        admnManageStudents.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adminIcons/icons8_Read_Online_26px.png"))); // NOI18N
+        admnManageStudents.setText("   Manage Students");
+        jPanel12.add(admnManageStudents, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 230, 30));
 
         jPanel3.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 360, 340, 60));
 
         jPanel13.setBackground(new java.awt.Color(51, 51, 51));
         jPanel13.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel15.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 18)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adminIcons/icons8_Conference_26px.png"))); // NOI18N
-        jLabel15.setText("   Defaulter List");
-        jPanel13.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 200, 30));
+        admnDefaultersList.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 18)); // NOI18N
+        admnDefaultersList.setForeground(new java.awt.Color(153, 153, 153));
+        admnDefaultersList.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adminIcons/icons8_Conference_26px.png"))); // NOI18N
+        admnDefaultersList.setText("   Defaulter List");
+        jPanel13.add(admnDefaultersList, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 200, 30));
 
         jPanel3.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 720, 340, 60));
 
@@ -427,6 +432,12 @@ public class HomePage extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jLabel1MouseClicked
 
+    private void admnManageBooksMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admnManageBooksMouseClicked
+        ManageBooks books = new ManageBooks();
+        books.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_admnManageBooksMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -464,13 +475,16 @@ public class HomePage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelPiChart;
+    private javax.swing.JLabel admnDefaultersList;
+    private javax.swing.JLabel admnHomePage;
+    private javax.swing.JLabel admnIssueBook;
+    private javax.swing.JLabel admnLMS_Dashboard;
+    private javax.swing.JLabel admnManageBooks;
+    private javax.swing.JLabel admnManageStudents;
+    private javax.swing.JLabel admnReturnBook;
+    private javax.swing.JLabel admnViewIssuedBooks;
+    private javax.swing.JLabel admnViewRecords;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
@@ -485,10 +499,7 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
