@@ -387,14 +387,13 @@ public class ManageBooks extends javax.swing.JFrame {
         jPanel1.add(btn_update, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 650, 130, 60));
 
         btn_clear.setBackground(new java.awt.Color(0, 0, 153));
-        btn_clear.setForeground(new java.awt.Color(204, 255, 0));
         btn_clear.setText("Clear");
         btn_clear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_clearActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_clear, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 170, 90, 60));
+        jPanel1.add(btn_clear, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 150, 90, 60));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 580, 830));
 
@@ -550,6 +549,7 @@ public class ManageBooks extends javax.swing.JFrame {
          if (deleteBook()== true){
             JOptionPane.showMessageDialog(this, "Book Deleted Succesfully");
             clearTable();
+            clearTextfields();
             setBookDetails();
         }else{
             JOptionPane.showMessageDialog(this, "Error Deleting Book");
@@ -560,6 +560,7 @@ public class ManageBooks extends javax.swing.JFrame {
          if (updateBook()== true){
             JOptionPane.showMessageDialog(this, "Book Updated Succesfully");
             clearTable();
+            clearTextfields();
             setBookDetails();
         }else{
             JOptionPane.showMessageDialog(this, "Error Adding Book");
@@ -570,6 +571,7 @@ public class ManageBooks extends javax.swing.JFrame {
         if (addBook() == true){
             JOptionPane.showMessageDialog(this, "Book Added Succesfully");
             clearTable();
+            clearTextfields();
             setBookDetails();
         }else{
             JOptionPane.showMessageDialog(this, "Error Updating Book");
