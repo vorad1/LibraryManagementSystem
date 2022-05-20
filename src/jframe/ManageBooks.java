@@ -7,6 +7,7 @@ package jframe;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
@@ -19,14 +20,15 @@ import javax.swing.table.TableModel;
  */
 public class ManageBooks extends javax.swing.JFrame {
 
-    String book_name, author, department;
-    int book_id;
+    String bookName, author, department;
+    int bookID;
     DefaultTableModel model;
    
     
     /**
      * Creates new form ManageBooks
      */
+    
     public ManageBooks() {
         initComponents();
         setBookDetails();
@@ -59,9 +61,111 @@ public class ManageBooks extends javax.swing.JFrame {
             e.printStackTrace();
         }      
     }
+    
+    // to add books to the database table
+    public boolean addBook(){
+        
+        boolean isAdded = false;
+        
+        bookID = Integer.parseInt(txt_BookID.getText());
+        bookName = txt_BookName.getText();
+        author = txt_AuthorName.getText();
+        department = txt_Department.getText();
+        
+        try {
+            Connection con = DBConnection.getConnection();
+            String sql = "insert into book_details values(?,?,?,?)";
+            PreparedStatement pst = con.prepareStatement(sql);
             
+            pst.setInt(1, bookID);
+            pst.setString(2, bookName);
+            pst.setString(3, author);
+            pst.setString(4, department);
             
+            int rowCount = pst.executeUpdate();
+            if(rowCount > 0){
+               isAdded = true; 
+            }else{
+                isAdded = false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return isAdded;
+    }
+    
+    // method to update book details
+    public boolean updateBook(){
+        
+        boolean isUpdated = false;
+        
+        bookID = Integer.parseInt(txt_BookID.getText());
+        bookName = txt_BookName.getText();
+        author = txt_AuthorName.getText();
+        department = txt_Department.getText();
+        
+        try {
+            Connection con = DBConnection.getConnection();
+            String sql = "update book_details set book_name = ?, author = ?, department = ? where book_id = ?";
+            PreparedStatement pst = con.prepareStatement(sql);
             
+            pst.setString(1, bookName);
+            pst.setString(2, author);
+            pst.setString(3, department);
+            pst.setInt(4, bookID);
+            
+            int rowCount = pst.executeUpdate();
+            if(rowCount > 0){
+               isUpdated = true; 
+            }else{
+               isUpdated = false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return isUpdated;
+    }
+    
+    // method to delete book
+     public boolean deleteBook(){
+        
+        boolean isDeleted = false;
+        
+        bookID = Integer.parseInt(txt_BookID.getText());
+        
+        
+        try {
+            
+            Connection con = DBConnection.getConnection();
+            String sql = "delete from book_details where book_id = ?";
+            PreparedStatement pst = con.prepareStatement(sql);
+           
+            int rowCount = pst.executeUpdate();
+            if(rowCount > 0){
+               isDeleted = true; 
+            }else{
+               isDeleted = false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return isDeleted;
+    }
+    
+    // method to clear table   
+    public void clearTable(){
+        DefaultTableModel model = (DefaultTableModel) tbl_bookDetails.getModel();
+        model.setRowCount(0);
+    }
+    
+    // method to clear textfields   
+    public void clearTextfields(){
+        txt_BookID.setText("");
+        txt_BookName.setText("");
+        txt_AuthorName.setText("");
+        txt_Department.setText("");
+    }
             
     /**
      * This method is called from within the constructor to initialize the form.
@@ -87,9 +191,10 @@ public class ManageBooks extends javax.swing.JFrame {
         lblQuantityLogo = new javax.swing.JLabel();
         lblQuantity = new javax.swing.JLabel();
         txt_Department = new app.bolivia.swing.JCTextField();
-        btn_Login = new rojerusan.RSMaterialButtonCircle();
-        btn_Login1 = new rojerusan.RSMaterialButtonCircle();
-        btn_Login2 = new rojerusan.RSMaterialButtonCircle();
+        btn_delete = new rojerusan.RSMaterialButtonCircle();
+        btn_add = new rojerusan.RSMaterialButtonCircle();
+        btn_update = new rojerusan.RSMaterialButtonCircle();
+        btn_clear = new necesario.RSMaterialButtonCircle();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         lblCancelManageBooks = new javax.swing.JLabel();
@@ -254,32 +359,41 @@ public class ManageBooks extends javax.swing.JFrame {
         });
         jPanel1.add(txt_Department, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 550, 320, -1));
 
-        btn_Login.setBackground(new java.awt.Color(255, 51, 51));
-        btn_Login.setText("Delete");
-        btn_Login.addActionListener(new java.awt.event.ActionListener() {
+        btn_delete.setBackground(new java.awt.Color(255, 51, 51));
+        btn_delete.setText("Delete");
+        btn_delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_LoginActionPerformed(evt);
+                btn_deleteActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_Login, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 650, 130, 60));
+        jPanel1.add(btn_delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 650, 130, 60));
 
-        btn_Login1.setBackground(new java.awt.Color(255, 51, 51));
-        btn_Login1.setText("Add");
-        btn_Login1.addActionListener(new java.awt.event.ActionListener() {
+        btn_add.setBackground(new java.awt.Color(255, 51, 51));
+        btn_add.setText("Add");
+        btn_add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_Login1ActionPerformed(evt);
+                btn_addActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_Login1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 650, 130, 60));
+        jPanel1.add(btn_add, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 650, 130, 60));
 
-        btn_Login2.setBackground(new java.awt.Color(255, 51, 51));
-        btn_Login2.setText("Update");
-        btn_Login2.addActionListener(new java.awt.event.ActionListener() {
+        btn_update.setBackground(new java.awt.Color(255, 51, 51));
+        btn_update.setText("Update");
+        btn_update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_Login2ActionPerformed(evt);
+                btn_updateActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_Login2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 650, 130, 60));
+        jPanel1.add(btn_update, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 650, 130, 60));
+
+        btn_clear.setBackground(new java.awt.Color(0, 0, 153));
+        btn_clear.setText("Clear");
+        btn_clear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_clearActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_clear, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 150, 90, 60));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 580, 830));
 
@@ -431,17 +545,38 @@ public class ManageBooks extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_DepartmentActionPerformed
 
-    private void btn_LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_LoginActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_LoginActionPerformed
+    private void btn_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteActionPerformed
+         if (deleteBook()== true){
+            JOptionPane.showMessageDialog(this, "Book Deleted Succesfully");
+            clearTable();
+            clearTextfields();
+            setBookDetails();
+        }else{
+            JOptionPane.showMessageDialog(this, "Error Deleting Book");
+        }
+    }//GEN-LAST:event_btn_deleteActionPerformed
 
-    private void btn_Login2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Login2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_Login2ActionPerformed
+    private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
+         if (updateBook()== true){
+            JOptionPane.showMessageDialog(this, "Book Updated Succesfully");
+            clearTable();
+            clearTextfields();
+            setBookDetails();
+        }else{
+            JOptionPane.showMessageDialog(this, "Error Adding Book");
+        }
+    }//GEN-LAST:event_btn_updateActionPerformed
 
-    private void btn_Login1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Login1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_Login1ActionPerformed
+    private void btn_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_addActionPerformed
+        if (addBook() == true){
+            JOptionPane.showMessageDialog(this, "Book Added Succesfully");
+            clearTable();
+            clearTextfields();
+            setBookDetails();
+        }else{
+            JOptionPane.showMessageDialog(this, "Error Updating Book");
+        }
+    }//GEN-LAST:event_btn_addActionPerformed
 
     private void lblCancelManageBooksMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCancelManageBooksMouseClicked
         System.exit(0);    
@@ -460,6 +595,11 @@ public class ManageBooks extends javax.swing.JFrame {
         txt_Department.setText(model.getValueAt(rowNo, 3).toString());
         
     }//GEN-LAST:event_tbl_bookDetailsMouseClicked
+
+    private void btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearActionPerformed
+
+       clearTextfields();
+    }//GEN-LAST:event_btn_clearActionPerformed
 
     /**
      * @param args the command line arguments
@@ -497,9 +637,10 @@ public class ManageBooks extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private rojerusan.RSMaterialButtonCircle btn_Login;
-    private rojerusan.RSMaterialButtonCircle btn_Login1;
-    private rojerusan.RSMaterialButtonCircle btn_Login2;
+    private rojerusan.RSMaterialButtonCircle btn_add;
+    private necesario.RSMaterialButtonCircle btn_clear;
+    private rojerusan.RSMaterialButtonCircle btn_delete;
+    private rojerusan.RSMaterialButtonCircle btn_update;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
