@@ -22,6 +22,9 @@ public class HomePage extends javax.swing.JFrame {
     /**
      * Creates new form HomePage
      */
+    Color mouseEnterColor = new Color(0, 0, 0);
+    Color mouseExitColor = new Color(51, 51, 51);
+    
     public HomePage() {
         initComponents();
         showPieChart();
@@ -262,6 +265,12 @@ public class HomePage extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 admnManageBooksMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                admnManageBooksMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                admnManageBooksMouseExited(evt);
+            }
         });
         jPanel11.add(admnManageBooks, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 200, 30));
 
@@ -274,6 +283,14 @@ public class HomePage extends javax.swing.JFrame {
         admnManageStudents.setForeground(new java.awt.Color(153, 153, 153));
         admnManageStudents.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adminIcons/icons8_Read_Online_26px.png"))); // NOI18N
         admnManageStudents.setText("   Manage Students");
+        admnManageStudents.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                admnManageStudentsMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                admnManageStudentsMouseExited(evt);
+            }
+        });
         jPanel12.add(admnManageStudents, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 230, 30));
 
         jPanel3.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 360, 340, 60));
@@ -437,6 +454,26 @@ public class HomePage extends javax.swing.JFrame {
         books.setVisible(true);
         dispose();
     }//GEN-LAST:event_admnManageBooksMouseClicked
+
+    private void admnManageBooksMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admnManageBooksMouseEntered
+        // TODO add your handling code here:
+        jPanel11.setBackground(mouseEnterColor);
+    }//GEN-LAST:event_admnManageBooksMouseEntered
+
+    private void admnManageBooksMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admnManageBooksMouseExited
+        // TODO add your handling code here:
+        jPanel11.setBackground(mouseExitColor);
+    }//GEN-LAST:event_admnManageBooksMouseExited
+
+    private void admnManageStudentsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admnManageStudentsMouseEntered
+        // TODO add your handling code here:
+        jPanel12.setBackground(mouseEnterColor);
+    }//GEN-LAST:event_admnManageStudentsMouseEntered
+
+    private void admnManageStudentsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admnManageStudentsMouseExited
+        // TODO add your handling code here:
+        jPanel12.setBackground(mouseExitColor);
+    }//GEN-LAST:event_admnManageStudentsMouseExited
 
     /**
      * @param args the command line arguments
