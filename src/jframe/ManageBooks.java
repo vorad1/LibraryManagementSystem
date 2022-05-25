@@ -33,6 +33,28 @@ public class ManageBooks extends javax.swing.JFrame {
         initComponents();
         setBookDetails();
     }
+    
+        //validation
+    public boolean validateLogin(){
+        String bName = txt_BookName.getText();
+        String aName = txt_AuthorName.getText();
+        String Id = txt_BookID.getText();
+
+        if (Id.equals("")) {
+            JOptionPane.showMessageDialog(this, "Please enter Book ID");
+            return false;
+        }
+        if (bName.equals("")) {
+            JOptionPane.showMessageDialog(this, "Please enter Book Name");
+            return false;
+        }
+        if (aName.equals("")) {
+            JOptionPane.showMessageDialog(this, "Please enter Author Name");
+            return false;
+        }
+       
+        return true;
+    }
 
     // to set the book details in the table
     public void setBookDetails(){
@@ -50,9 +72,8 @@ public class ManageBooks extends javax.swing.JFrame {
                 String author = rs.getString("author");
                 String department = rs.getString("department");
                 
-                Object [] obj = {bookId,bookName,author,department};
                 
-                // using a model to set the values in the table
+                Object [] obj = {bookId,bookName,author,department};                // using a model to set the values in the table
                 model = (DefaultTableModel)tbl_bookDetails.getModel();
                 // using the array to add data in the table
                 model.addRow(obj);
@@ -70,17 +91,18 @@ public class ManageBooks extends javax.swing.JFrame {
         bookID = Integer.parseInt(txt_BookID.getText());
         bookName = txt_BookName.getText();
         author = txt_AuthorName.getText();
-        department = txt_Department.getText();
+        department = combo_department.getSelectedItem().toString();
         
         try {
             Connection con = DBConnection.getConnection();
-            String sql = "insert into book_details values(?,?,?,?)";
+            String sql = "insert into book_details values(?,?,?,?,?)";
             PreparedStatement pst = con.prepareStatement(sql);
             
             pst.setInt(1, bookID);
             pst.setString(2, bookName);
             pst.setString(3, author);
             pst.setString(4, department);
+            pst.setInt(5,1);
             
             int rowCount = pst.executeUpdate();
             if(rowCount > 0){
@@ -103,7 +125,7 @@ public class ManageBooks extends javax.swing.JFrame {
         bookID = Integer.parseInt(txt_BookID.getText());
         bookName = txt_BookName.getText();
         author = txt_AuthorName.getText();
-        department = txt_Department.getText();
+        department = combo_department.getSelectedItem().toString();
         
         try {
             Connection con = DBConnection.getConnection();
@@ -140,6 +162,7 @@ public class ManageBooks extends javax.swing.JFrame {
             Connection con = DBConnection.getConnection();
             String sql = "delete from book_details where book_id = ?";
             PreparedStatement pst = con.prepareStatement(sql);
+            pst.setInt(1, bookID);
            
             int rowCount = pst.executeUpdate();
             if(rowCount > 0){
@@ -164,7 +187,6 @@ public class ManageBooks extends javax.swing.JFrame {
         txt_BookID.setText("");
         txt_BookName.setText("");
         txt_AuthorName.setText("");
-        txt_Department.setText("");
     }
             
     /**
@@ -190,11 +212,11 @@ public class ManageBooks extends javax.swing.JFrame {
         txt_AuthorName = new app.bolivia.swing.JCTextField();
         lblQuantityLogo = new javax.swing.JLabel();
         lblQuantity = new javax.swing.JLabel();
-        txt_Department = new app.bolivia.swing.JCTextField();
         btn_delete = new rojerusan.RSMaterialButtonCircle();
         btn_add = new rojerusan.RSMaterialButtonCircle();
         btn_update = new rojerusan.RSMaterialButtonCircle();
         btn_clear = new necesario.RSMaterialButtonCircle();
+        combo_department = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         lblCancelManageBooks = new javax.swing.JLabel();
@@ -231,14 +253,14 @@ public class ManageBooks extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(lblBackManageBooks, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblBackManageBooks, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 140, 70));
@@ -340,25 +362,6 @@ public class ManageBooks extends javax.swing.JFrame {
         lblQuantity.setText("Enter Department: ");
         jPanel1.add(lblQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 510, -1, -1));
 
-        txt_Department.setBackground(new java.awt.Color(102, 102, 255));
-        txt_Department.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
-        txt_Department.setFont(new java.awt.Font("Tahoma", 0, 17)); // NOI18N
-        txt_Department.setPlaceholder("Enter Department ...");
-        txt_Department.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txt_DepartmentFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txt_DepartmentFocusLost(evt);
-            }
-        });
-        txt_Department.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_DepartmentActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txt_Department, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 550, 320, -1));
-
         btn_delete.setBackground(new java.awt.Color(255, 51, 51));
         btn_delete.setText("Delete");
         btn_delete.addActionListener(new java.awt.event.ActionListener() {
@@ -395,6 +398,15 @@ public class ManageBooks extends javax.swing.JFrame {
         });
         jPanel1.add(btn_clear, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 150, 90, 60));
 
+        combo_department.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
+        combo_department.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "IT", "Construction", "Business", "English", "Other" }));
+        combo_department.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combo_departmentActionPerformed(evt);
+            }
+        });
+        jPanel1.add(combo_department, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 550, 360, 40));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 580, 830));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -425,7 +437,7 @@ public class ManageBooks extends javax.swing.JFrame {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblCancelManageBooks, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -532,21 +544,9 @@ public class ManageBooks extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_AuthorNameActionPerformed
 
-    private void txt_DepartmentFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_DepartmentFocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_DepartmentFocusGained
-
-    private void txt_DepartmentFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_DepartmentFocusLost
-        // to check whether username is already in use
-        
-    }//GEN-LAST:event_txt_DepartmentFocusLost
-
-    private void txt_DepartmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_DepartmentActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_DepartmentActionPerformed
-
     private void btn_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteActionPerformed
-         if (deleteBook()== true){
+         if (validateLogin()){
+        if (deleteBook()== true){
             JOptionPane.showMessageDialog(this, "Book Deleted Succesfully");
             clearTable();
             clearTextfields();
@@ -554,10 +554,12 @@ public class ManageBooks extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(this, "Error Deleting Book");
         }
+         }
     }//GEN-LAST:event_btn_deleteActionPerformed
 
     private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
-         if (updateBook()== true){
+        if(validateLogin()){ 
+        if (updateBook()== true){
             JOptionPane.showMessageDialog(this, "Book Updated Succesfully");
             clearTable();
             clearTextfields();
@@ -565,9 +567,11 @@ public class ManageBooks extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(this, "Error Adding Book");
         }
+        }
     }//GEN-LAST:event_btn_updateActionPerformed
 
     private void btn_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_addActionPerformed
+       if(validateLogin()){
         if (addBook() == true){
             JOptionPane.showMessageDialog(this, "Book Added Succesfully");
             clearTable();
@@ -576,6 +580,7 @@ public class ManageBooks extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(this, "Error Updating Book");
         }
+       }
     }//GEN-LAST:event_btn_addActionPerformed
 
     private void lblCancelManageBooksMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCancelManageBooksMouseClicked
@@ -592,7 +597,7 @@ public class ManageBooks extends javax.swing.JFrame {
         txt_BookID.setText(model.getValueAt(rowNo, 0).toString());
         txt_BookName.setText(model.getValueAt(rowNo, 1).toString());
         txt_AuthorName.setText(model.getValueAt(rowNo, 2).toString());
-        txt_Department.setText(model.getValueAt(rowNo, 3).toString());
+        combo_department.setSelectedItem(model.getValueAt(rowNo, 3).toString());
         
     }//GEN-LAST:event_tbl_bookDetailsMouseClicked
 
@@ -600,6 +605,10 @@ public class ManageBooks extends javax.swing.JFrame {
 
        clearTextfields();
     }//GEN-LAST:event_btn_clearActionPerformed
+
+    private void combo_departmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_departmentActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_combo_departmentActionPerformed
 
     /**
      * @param args the command line arguments
@@ -641,6 +650,7 @@ public class ManageBooks extends javax.swing.JFrame {
     private necesario.RSMaterialButtonCircle btn_clear;
     private rojerusan.RSMaterialButtonCircle btn_delete;
     private rojerusan.RSMaterialButtonCircle btn_update;
+    private javax.swing.JComboBox<String> combo_department;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -662,6 +672,5 @@ public class ManageBooks extends javax.swing.JFrame {
     private app.bolivia.swing.JCTextField txt_AuthorName;
     private app.bolivia.swing.JCTextField txt_BookID;
     private app.bolivia.swing.JCTextField txt_BookName;
-    private app.bolivia.swing.JCTextField txt_Department;
     // End of variables declaration//GEN-END:variables
 }

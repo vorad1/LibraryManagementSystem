@@ -32,12 +32,10 @@ public class IssueBook extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         lbl_branch = new javax.swing.JLabel();
         lbl_studentId = new javax.swing.JLabel();
         lbl_studentName = new javax.swing.JLabel();
-        lbl_course = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         lbl_studentError = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -54,6 +52,8 @@ public class IssueBook extends javax.swing.JFrame {
         lbl_author = new javax.swing.JLabel();
         lbl_bookId = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        lbl_branch1 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
@@ -96,18 +96,13 @@ public class IssueBook extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Branch : ");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 550, 130, -1));
+        jLabel3.setText("Department : ");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 480, 130, -1));
 
         jLabel5.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Student name : ");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 150, -1));
-
-        jLabel6.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Course : ");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 480, 130, -1));
 
         jLabel7.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -116,7 +111,7 @@ public class IssueBook extends javax.swing.JFrame {
 
         lbl_branch.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
         lbl_branch.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(lbl_branch, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 540, 210, 40));
+        jPanel1.add(lbl_branch, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 470, 210, 40));
 
         lbl_studentId.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
         lbl_studentId.setForeground(new java.awt.Color(255, 255, 255));
@@ -125,10 +120,6 @@ public class IssueBook extends javax.swing.JFrame {
         lbl_studentName.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
         lbl_studentName.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.add(lbl_studentName, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 400, 210, 40));
-
-        lbl_course.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
-        lbl_course.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(lbl_course, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 480, 210, 40));
 
         jLabel2.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 25)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -202,7 +193,7 @@ public class IssueBook extends javax.swing.JFrame {
 
         lbl_quantity.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
         lbl_quantity.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel3.add(lbl_quantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 550, 210, 40));
+        jPanel3.add(lbl_quantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 610, 210, 40));
 
         jLabel15.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
@@ -234,7 +225,16 @@ public class IssueBook extends javax.swing.JFrame {
         jLabel19.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setText("Quantity : ");
-        jPanel3.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 550, 130, -1));
+        jPanel3.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 610, 130, -1));
+
+        jLabel8.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Department : ");
+        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 540, 130, -1));
+
+        lbl_branch1.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
+        lbl_branch1.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel3.add(lbl_branch1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 530, 210, 40));
 
         panel_main.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, 810));
 
@@ -447,8 +447,8 @@ public class IssueBook extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -463,7 +463,7 @@ public class IssueBook extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_bookId;
     private javax.swing.JLabel lbl_bookName;
     private javax.swing.JLabel lbl_branch;
-    private javax.swing.JLabel lbl_course;
+    private javax.swing.JLabel lbl_branch1;
     private javax.swing.JLabel lbl_quantity;
     private javax.swing.JLabel lbl_studentError;
     private javax.swing.JLabel lbl_studentId;
