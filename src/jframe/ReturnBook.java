@@ -5,6 +5,11 @@
  */
 package jframe;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Dev Vora
@@ -16,6 +21,98 @@ public class ReturnBook extends javax.swing.JFrame {
      */
     public ReturnBook() {
         initComponents();
+    }
+    
+    
+    //to fetch the issue book details from the database and display it in the panel
+    public void getIssueBookDetails(){
+        int bookId = Integer.parseInt(txt_bookId.getText());
+        int studentId = Integer.parseInt(txt_studentId.getText());
+        
+        try {
+            Connection con = DBConnection.getConnection();
+            String sql = "select * from issue_book_details where book id = ? and student_id = ? and status = ?";
+            
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setInt(1, bookId);
+            pst.setInt(2, studentId);
+            pst.setString(3, "pending");
+            
+            ResultSet rs = pst.executeQuery();
+            
+            if(rs.next()){
+             
+              lbl_issueId.setText(rs.getString("id"));
+              lbl_bookName.setText(rs.getString("book_name"));
+              lbl_studentName.setText(rs.getString("student_name"));
+              lbl_issueDate.setText(rs.getString("issue_date"));
+              lbl_dueDate.setText(rs.getString("due_date"));
+              lbl_bookError.setText("");
+            }else{
+               lbl_bookError.setText("No Record Found");
+               
+                lbl_issueId.setText("");
+                lbl_bookName.setText("");
+                lbl_studentName.setText("");
+                lbl_issueDate.setText("");
+                lbl_dueDate.setText("");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    
+    // to return the book 
+    public boolean returnBook(){
+      boolean isReturned = false;
+      int bookId = Integer.parseInt(txt_bookId.getText());
+      int studentId = Integer.parseInt(txt_studentId.getText());
+      
+        try {
+            
+           Connection con = DBConnection.getConnection();
+           String sql = "update issue_book_details set status = ? where student_id = ? and book_id = ? and status = ?";
+            
+           PreparedStatement pst = con.prepareStatement(sql);
+           pst.setString(1, "returned");
+           pst.setInt(2, studentId);
+           pst.setInt(3, bookId);
+           pst.setString(4, "pending");
+           
+           pst.executeUpdate();
+           int rowCount =  pst.executeUpdate();
+            if (rowCount > 0) {
+                isReturned = true;
+            }else{
+                isReturned = false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return isReturned;
+    }
+    
+    //updating book count to increment the quantity in the database
+    public void updateBookCount() {
+        int bookId = Integer.parseInt(txt_bookId.getText());
+        try {
+            Connection con = DBConnection.getConnection();
+            String sql = "update book_details set quantity = quantity + 1 where book_id = ?";
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setInt(1, bookId);
+
+            int rowCount = pst.executeUpdate();
+
+            if (rowCount > 0) {
+                JOptionPane.showMessageDialog(this, "Book Count Updated"); 
+            } else {
+                JOptionPane.showMessageDialog(this, "Cannot Update Book Count");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -51,10 +148,10 @@ public class ReturnBook extends javax.swing.JFrame {
         txt_bookId = new app.bolivia.swing.JCTextField();
         txt_studentId = new app.bolivia.swing.JCTextField();
         jLabel14 = new javax.swing.JLabel();
-        rSMaterialButtonCircle2 = new rojerusan.RSMaterialButtonCircle();
+        btn_returnBook = new rojerusan.RSMaterialButtonCircle();
         jPanel5 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
-        rSMaterialButtonCircle3 = new rojerusan.RSMaterialButtonCircle();
+        btn_Find = new rojerusan.RSMaterialButtonCircle();
         jLabel17 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -234,14 +331,14 @@ public class ReturnBook extends javax.swing.JFrame {
         jLabel14.setText("Student Id :");
         panel_main.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(1300, 440, 110, 30));
 
-        rSMaterialButtonCircle2.setBackground(new java.awt.Color(255, 51, 51));
-        rSMaterialButtonCircle2.setText("Return Book");
-        rSMaterialButtonCircle2.addActionListener(new java.awt.event.ActionListener() {
+        btn_returnBook.setBackground(new java.awt.Color(255, 51, 51));
+        btn_returnBook.setText("Return Book");
+        btn_returnBook.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rSMaterialButtonCircle2ActionPerformed(evt);
+                btn_returnBookActionPerformed(evt);
             }
         });
-        panel_main.add(rSMaterialButtonCircle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1320, 660, 410, 70));
+        panel_main.add(btn_returnBook, new org.netbeans.lib.awtextra.AbsoluteConstraints(1320, 660, 410, 70));
 
         jPanel5.setBackground(new java.awt.Color(102, 102, 255));
 
@@ -273,14 +370,14 @@ public class ReturnBook extends javax.swing.JFrame {
 
         panel_main.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        rSMaterialButtonCircle3.setBackground(new java.awt.Color(102, 102, 255));
-        rSMaterialButtonCircle3.setText("Find");
-        rSMaterialButtonCircle3.addActionListener(new java.awt.event.ActionListener() {
+        btn_Find.setBackground(new java.awt.Color(102, 102, 255));
+        btn_Find.setText("Find");
+        btn_Find.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rSMaterialButtonCircle3ActionPerformed(evt);
+                btn_FindActionPerformed(evt);
             }
         });
-        panel_main.add(rSMaterialButtonCircle3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1320, 580, 410, 70));
+        panel_main.add(btn_Find, new org.netbeans.lib.awtextra.AbsoluteConstraints(1320, 580, 410, 70));
 
         jLabel17.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
@@ -312,14 +409,20 @@ public class ReturnBook extends javax.swing.JFrame {
 
     }//GEN-LAST:event_txt_studentIdFocusLost
 
-    private void rSMaterialButtonCircle2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSMaterialButtonCircle2ActionPerformed
+    private void btn_returnBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_returnBookActionPerformed
+        if(returnBook() == true){
+            JOptionPane.showMessageDialog(this, "Book Returned Successfully");
+            updateBookCount();
+        }else{
+            JOptionPane.showMessageDialog(this, "Book Return Failed");
+        }   
+        
 
+    }//GEN-LAST:event_btn_returnBookActionPerformed
 
-    }//GEN-LAST:event_rSMaterialButtonCircle2ActionPerformed
-
-    private void rSMaterialButtonCircle3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSMaterialButtonCircle3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rSMaterialButtonCircle3ActionPerformed
+    private void btn_FindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_FindActionPerformed
+        getIssueBookDetails();
+    }//GEN-LAST:event_btn_FindActionPerformed
 
     /**
      * @param args the command line arguments
@@ -360,6 +463,8 @@ public class ReturnBook extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private rojerusan.RSMaterialButtonCircle btn_Find;
+    private rojerusan.RSMaterialButtonCircle btn_returnBook;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -385,8 +490,6 @@ public class ReturnBook extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_issueId;
     private javax.swing.JLabel lbl_studentName;
     private javax.swing.JPanel panel_main;
-    private rojerusan.RSMaterialButtonCircle rSMaterialButtonCircle2;
-    private rojerusan.RSMaterialButtonCircle rSMaterialButtonCircle3;
     private app.bolivia.swing.JCTextField txt_bookId;
     private app.bolivia.swing.JCTextField txt_studentId;
     // End of variables declaration//GEN-END:variables
