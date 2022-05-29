@@ -40,7 +40,7 @@ public class IssueBook extends javax.swing.JFrame {
         lbl_studentError = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
+        lbl_BackButton = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         lbl_bookError = new javax.swing.JLabel();
@@ -138,13 +138,13 @@ public class IssueBook extends javax.swing.JFrame {
 
         jPanel5.setBackground(new java.awt.Color(102, 102, 255));
 
-        jLabel11.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AddNewBookIcons/icons8_Rewind_48px.png"))); // NOI18N
-        jLabel11.setText("Back");
-        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+        lbl_BackButton.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
+        lbl_BackButton.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_BackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AddNewBookIcons/icons8_Rewind_48px.png"))); // NOI18N
+        lbl_BackButton.setText("Back");
+        lbl_BackButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel11MouseClicked(evt);
+                lbl_BackButtonMouseClicked(evt);
             }
         });
 
@@ -154,13 +154,13 @@ public class IssueBook extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel11)
+                .addComponent(lbl_BackButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(jLabel11)
+                .addComponent(lbl_BackButton)
                 .addGap(0, 2, Short.MAX_VALUE))
         );
 
@@ -370,11 +370,11 @@ public class IssueBook extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+    private void lbl_BackButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_BackButtonMouseClicked
         HomePage home = new HomePage();
         home.setVisible(true);
         dispose();
-    }//GEN-LAST:event_jLabel11MouseClicked
+    }//GEN-LAST:event_lbl_BackButtonMouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         System.exit(0);
@@ -435,7 +435,6 @@ public class IssueBook extends javax.swing.JFrame {
     private rojeru_san.componentes.RSDateChooser date_issueDate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -458,6 +457,7 @@ public class IssueBook extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JLabel lbl_BackButton;
     private javax.swing.JLabel lbl_author;
     private javax.swing.JLabel lbl_bookError;
     private javax.swing.JLabel lbl_bookId;
