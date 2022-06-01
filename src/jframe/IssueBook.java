@@ -6,8 +6,10 @@
 package jframe;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -70,6 +72,52 @@ public class IssueBook extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
+    
+    
+        //insert issue book details to database
+    public boolean issueBook() {
+        boolean isIssued = false;
+        int bookId = Integer.parseInt(txt_bookId.getText());
+        int studentId = Integer.parseInt(txt_studentId.getText());
+        String bookName = lbl_bookName.getText();
+        String studentName = lbl_studentName.getText();
+
+        java.util.Date uIssueDate = date_issueDate.getDatoFecha();
+        java.util.Date uDueDate = date_dueDate.getDatoFecha();
+
+        Long l1 = uIssueDate.getTime();
+        long l2 = uDueDate.getTime();
+
+        java.sql.Date sIssueDate = new java.sql.Date(l1);
+        java.sql.Date sDueDate = new java.sql.Date(l2);
+
+        try {
+            Connection con = DBConnection.getConnection();
+            String sql = "insert into issue_book_details(book_id,book_name,student_id,student_name,"
+                    + "issue_date,due_date,status) values(?,?,?,?,?,?,?)";
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setInt(1, bookId);
+            pst.setString(2, bookName);
+            pst.setInt(3, studentId);
+            pst.setString(4, studentName);
+            pst.setDate(5, sIssueDate);
+            pst.setDate(6, sDueDate);
+            pst.setString(7, "pending");
+
+            int rowCount = pst.executeUpdate();
+            if (rowCount > 0) {
+                isIssued = true;
+            } else {
+                isIssued = false;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return isIssued;
+
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -120,7 +168,7 @@ public class IssueBook extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         date_dueDate = new rojeru_san.componentes.RSDateChooser();
-        rSMaterialButtonCircle2 = new rojerusan.RSMaterialButtonCircle();
+        btn_IssueBook = new rojerusan.RSMaterialButtonCircle();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -246,7 +294,7 @@ public class IssueBook extends javax.swing.JFrame {
 
         lbl_quantity.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
         lbl_quantity.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel3.add(lbl_quantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 610, 210, 40));
+        jPanel3.add(lbl_quantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 600, 210, 40));
 
         jLabel15.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
@@ -408,14 +456,14 @@ public class IssueBook extends javax.swing.JFrame {
         date_dueDate.setPlaceholder("Select Due Date");
         panel_main.add(date_dueDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 590, 350, -1));
 
-        rSMaterialButtonCircle2.setBackground(new java.awt.Color(255, 51, 51));
-        rSMaterialButtonCircle2.setText("Issue Book");
-        rSMaterialButtonCircle2.addActionListener(new java.awt.event.ActionListener() {
+        btn_IssueBook.setBackground(new java.awt.Color(255, 51, 51));
+        btn_IssueBook.setText("Issue Book");
+        btn_IssueBook.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rSMaterialButtonCircle2ActionPerformed(evt);
+                btn_IssueBookActionPerformed(evt);
             }
         });
-        panel_main.add(rSMaterialButtonCircle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 690, 410, 70));
+        panel_main.add(btn_IssueBook, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 690, 410, 70));
 
         getContentPane().add(panel_main, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1410, 810));
 
@@ -446,10 +494,14 @@ public class IssueBook extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txt_studentIdFocusLost
 
-    private void rSMaterialButtonCircle2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSMaterialButtonCircle2ActionPerformed
+    private void btn_IssueBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_IssueBookActionPerformed
+        if (issueBook() == true) {
+                    JOptionPane.showMessageDialog(this, "book issued successfully");
+                } else {
+                    JOptionPane.showMessageDialog(this, "can't issue the book");
+                }
 
-
-    }//GEN-LAST:event_rSMaterialButtonCircle2ActionPerformed
+    }//GEN-LAST:event_btn_IssueBookActionPerformed
 
     /**
      * @param args the command line arguments
@@ -488,6 +540,7 @@ public class IssueBook extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private rojerusan.RSMaterialButtonCircle btn_IssueBook;
     private rojeru_san.componentes.RSDateChooser date_dueDate;
     private rojeru_san.componentes.RSDateChooser date_issueDate;
     private javax.swing.JLabel jLabel1;
@@ -526,7 +579,6 @@ public class IssueBook extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_studentId;
     private javax.swing.JLabel lbl_studentName;
     private javax.swing.JPanel panel_main;
-    private rojerusan.RSMaterialButtonCircle rSMaterialButtonCircle2;
     private app.bolivia.swing.JCTextField txt_bookId;
     private app.bolivia.swing.JCTextField txt_studentId;
     // End of variables declaration//GEN-END:variables
