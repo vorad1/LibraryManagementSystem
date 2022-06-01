@@ -142,6 +142,35 @@ public class IssueBook extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
+    
+        //checking whether book already allocated or not
+    public boolean isAlreadyIssued() {
+
+        boolean isAlreadyIssued = false;
+        int bookId = Integer.parseInt(txt_bookId.getText());
+        int studentId = Integer.parseInt(txt_studentId.getText());
+
+        try {
+            Connection con = DBConnection.getConnection();
+            String sql = "select * from issue_book_details where book_id = ? and student_id = ? and status = ?";
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setInt(1, bookId);
+            pst.setInt(2, studentId);
+            pst.setString(3, "pending");
+
+            ResultSet rs = pst.executeQuery();
+
+            if (rs.next()) {
+                isAlreadyIssued = true;
+            } else {
+                isAlreadyIssued = false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return isAlreadyIssued;
+
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -519,12 +548,24 @@ public class IssueBook extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_studentIdFocusLost
 
     private void btn_IssueBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_IssueBookActionPerformed
-        if (issueBook() == true) {
+        if (lbl_quantity.getText().equals("0")) {
+            JOptionPane.showMessageDialog(this, "book is not available");
+        } else {
+
+            if (isAlreadyIssued() == false) {
+
+                if (issueBook() == true) {
                     JOptionPane.showMessageDialog(this, "book issued successfully");
                     updateBookCount();
                 } else {
                     JOptionPane.showMessageDialog(this, "can't issue the book");
                 }
+
+            } else {
+                JOptionPane.showMessageDialog(this, "this student already has this book");
+            }
+
+        }
 
     }//GEN-LAST:event_btn_IssueBookActionPerformed
 
