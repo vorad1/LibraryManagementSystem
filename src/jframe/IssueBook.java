@@ -5,6 +5,10 @@
  */
 package jframe;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 /**
  *
  * @author Rudra Modh
@@ -16,6 +20,55 @@ public class IssueBook extends javax.swing.JFrame {
      */
     public IssueBook() {
         initComponents();
+    }
+    
+        //to fetch the book details from the database and display it to book details panel
+    public void getBookDetails() {
+        int bookId = Integer.parseInt(txt_bookId.getText());
+
+        try {
+            Connection con = DBConnection.getConnection();
+            PreparedStatement pst = con.prepareStatement("select * from book_details where book_id = ?");
+            pst.setInt(1, bookId);
+            ResultSet rs = pst.executeQuery();
+
+            if (rs.next()) {
+                lbl_bookId.setText(rs.getString("book_id"));
+                lbl_bookName.setText(rs.getString("book_name"));
+                lbl_author.setText(rs.getString("author"));
+                lbl_dept.setText(rs.getString("department"));
+                lbl_quantity.setText(rs.getString("quantity"));
+            } else {
+                lbl_bookError.setText("invalid book id");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    
+        //to fetch the student details from the database and display it to student details panel
+    public void getStudentDetails() {
+        int studentId = Integer.parseInt(txt_studentId.getText());
+
+        try {
+            Connection con = DBConnection.getConnection();
+            PreparedStatement pst = con.prepareStatement("select * from student_details where student_id = ?");
+            pst.setInt(1, studentId);
+            ResultSet rs = pst.executeQuery();
+
+            if (rs.next()) {
+                lbl_studentId.setText(rs.getString("student_id"));
+                lbl_studentName.setText(rs.getString("name"));
+                lbl_department.setText(rs.getString("department"));
+            } else {
+                lbl_studentError.setText("invalid student id");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -33,7 +86,7 @@ public class IssueBook extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        lbl_branch = new javax.swing.JLabel();
+        lbl_department = new javax.swing.JLabel();
         lbl_studentId = new javax.swing.JLabel();
         lbl_studentName = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -53,7 +106,7 @@ public class IssueBook extends javax.swing.JFrame {
         lbl_bookId = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        lbl_branch1 = new javax.swing.JLabel();
+        lbl_dept = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
@@ -109,9 +162,9 @@ public class IssueBook extends javax.swing.JFrame {
         jLabel7.setText("Student Id : ");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 120, -1));
 
-        lbl_branch.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
-        lbl_branch.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(lbl_branch, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 470, 210, 40));
+        lbl_department.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
+        lbl_department.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(lbl_department, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 470, 210, 40));
 
         lbl_studentId.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
         lbl_studentId.setForeground(new java.awt.Color(255, 255, 255));
@@ -232,9 +285,9 @@ public class IssueBook extends javax.swing.JFrame {
         jLabel8.setText("Department : ");
         jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 540, 130, -1));
 
-        lbl_branch1.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
-        lbl_branch1.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel3.add(lbl_branch1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 530, 210, 40));
+        lbl_dept.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
+        lbl_dept.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel3.add(lbl_dept, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 530, 210, 40));
 
         panel_main.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, 810));
 
@@ -381,12 +434,16 @@ public class IssueBook extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void txt_bookIdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_bookIdFocusLost
-
+         if (!txt_bookId.getText().equals("")) {
+            getBookDetails();
+        }
 
     }//GEN-LAST:event_txt_bookIdFocusLost
 
     private void txt_studentIdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_studentIdFocusLost
-
+        if (!txt_studentId.getText().equals("")) {
+            getStudentDetails();
+        }
     }//GEN-LAST:event_txt_studentIdFocusLost
 
     private void rSMaterialButtonCircle2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSMaterialButtonCircle2ActionPerformed
@@ -462,8 +519,8 @@ public class IssueBook extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_bookError;
     private javax.swing.JLabel lbl_bookId;
     private javax.swing.JLabel lbl_bookName;
-    private javax.swing.JLabel lbl_branch;
-    private javax.swing.JLabel lbl_branch1;
+    private javax.swing.JLabel lbl_department;
+    private javax.swing.JLabel lbl_dept;
     private javax.swing.JLabel lbl_quantity;
     private javax.swing.JLabel lbl_studentError;
     private javax.swing.JLabel lbl_studentId;
