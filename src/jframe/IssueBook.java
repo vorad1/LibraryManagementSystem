@@ -118,6 +118,30 @@ public class IssueBook extends javax.swing.JFrame {
         return isIssued;
 
     }
+    
+    
+        //updating book count
+    public void updateBookCount() {
+        int bookId = Integer.parseInt(txt_bookId.getText());
+        try {
+            Connection con = DBConnection.getConnection();
+            String sql = "update book_details set quantity = quantity - 1 where book_id = ?";
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setInt(1, bookId);
+
+            int rowCount = pst.executeUpdate();
+
+            if (rowCount > 0) {
+                JOptionPane.showMessageDialog(this, "book count updated");
+                int initialCount = Integer.parseInt(lbl_quantity.getText());
+                lbl_quantity.setText(Integer.toString(initialCount - 1));
+            } else {
+                JOptionPane.showMessageDialog(this, "can't update book count");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -497,6 +521,7 @@ public class IssueBook extends javax.swing.JFrame {
     private void btn_IssueBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_IssueBookActionPerformed
         if (issueBook() == true) {
                     JOptionPane.showMessageDialog(this, "book issued successfully");
+                    updateBookCount();
                 } else {
                     JOptionPane.showMessageDialog(this, "can't issue the book");
                 }
