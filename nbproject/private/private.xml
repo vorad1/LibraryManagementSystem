@@ -5,9 +5,9 @@
         <group>
             <file>file:/D:/LibraryManagementSystem/src/jframe/ReturnBook.java</file>
             <file>file:/D:/LibraryManagementSystem/src/jframe/SignupPage.java</file>
+            <file>file:/D:/LibraryManagementSystem/src/jframe/ViewRecords.java</file>
             <file>file:/D:/LibraryManagementSystem/src/jframe/IssueBook.java</file>
             <file>file:/D:/LibraryManagementSystem/src/jframe/DBConnection.java</file>
-            <file>file:/D:/LibraryManagementSystem/src/jframe/HomePage.java</file>
             <file>file:/D:/LibraryManagementSystem/src/jframe/ManageBooks.java</file>
         </group>
     </open-files>

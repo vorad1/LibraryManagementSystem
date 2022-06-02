@@ -142,14 +142,14 @@ public class ReturnBook extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
-        jPanel8 = new javax.swing.JPanel();
+        btnClose = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         txt_bookId = new app.bolivia.swing.JCTextField();
         txt_studentId = new app.bolivia.swing.JCTextField();
         jLabel14 = new javax.swing.JLabel();
         btn_returnBook = new rojerusan.RSMaterialButtonCircle();
-        jPanel5 = new javax.swing.JPanel();
+        btnBack = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         btn_Find = new rojerusan.RSMaterialButtonCircle();
         jLabel17 = new javax.swing.JLabel();
@@ -272,7 +272,7 @@ public class ReturnBook extends javax.swing.JFrame {
 
         panel_main.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1370, 220, 350, 5));
 
-        jPanel8.setBackground(new java.awt.Color(255, 51, 51));
+        btnClose.setBackground(new java.awt.Color(255, 51, 51));
 
         jLabel4.setFont(new java.awt.Font("Verdana", 0, 35)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -283,23 +283,23 @@ public class ReturnBook extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
+        javax.swing.GroupLayout btnCloseLayout = new javax.swing.GroupLayout(btnClose);
+        btnClose.setLayout(btnCloseLayout);
+        btnCloseLayout.setHorizontalGroup(
+            btnCloseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnCloseLayout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(41, Short.MAX_VALUE))
         );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+        btnCloseLayout.setVerticalGroup(
+            btnCloseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnCloseLayout.createSequentialGroup()
                 .addComponent(jLabel4)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        panel_main.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(1660, 0, 130, 40));
+        panel_main.add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(1660, 0, 130, 40));
 
         jLabel9.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 51, 51));
@@ -340,7 +340,7 @@ public class ReturnBook extends javax.swing.JFrame {
         });
         panel_main.add(btn_returnBook, new org.netbeans.lib.awtextra.AbsoluteConstraints(1320, 660, 410, 70));
 
-        jPanel5.setBackground(new java.awt.Color(102, 102, 255));
+        btnBack.setBackground(new java.awt.Color(102, 102, 255));
 
         jLabel11.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
@@ -352,23 +352,23 @@ public class ReturnBook extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        javax.swing.GroupLayout btnBackLayout = new javax.swing.GroupLayout(btnBack);
+        btnBack.setLayout(btnBackLayout);
+        btnBackLayout.setHorizontalGroup(
+            btnBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnBackLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel11)
                 .addContainerGap(27, Short.MAX_VALUE))
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        btnBackLayout.setVerticalGroup(
+            btnBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnBackLayout.createSequentialGroup()
                 .addComponent(jLabel11)
                 .addGap(0, 2, Short.MAX_VALUE))
         );
 
-        panel_main.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        panel_main.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         btn_Find.setBackground(new java.awt.Color(102, 102, 255));
         btn_Find.setText("Find");
@@ -463,6 +463,8 @@ public class ReturnBook extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel btnBack;
+    private javax.swing.JPanel btnClose;
     private rojerusan.RSMaterialButtonCircle btn_Find;
     private rojerusan.RSMaterialButtonCircle btn_returnBook;
     private javax.swing.JLabel jLabel1;
@@ -479,10 +481,8 @@ public class ReturnBook extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
     private javax.swing.JLabel lbl_bookError;
     private javax.swing.JLabel lbl_bookName;
     private javax.swing.JLabel lbl_dueDate;
