@@ -72,7 +72,7 @@ public class ViewRecords extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        panel_heading = new javax.swing.JPanel();
         lbl_Heading = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         date_FromDate = new rojeru_san.componentes.RSDateChooser();
@@ -92,14 +92,14 @@ public class ViewRecords extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(102, 102, 255));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panel_heading.setBackground(new java.awt.Color(102, 102, 255));
+        panel_heading.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lbl_Heading.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 25)); // NOI18N
         lbl_Heading.setForeground(new java.awt.Color(255, 255, 255));
         lbl_Heading.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AddNewBookIcons/icons8_Literature_100px_1.png"))); // NOI18N
         lbl_Heading.setText("  Issue Book Details");
-        jPanel1.add(lbl_Heading, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 40, 330, -1));
+        panel_heading.add(lbl_Heading, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 40, 330, -1));
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -114,31 +114,31 @@ public class ViewRecords extends javax.swing.JFrame {
             .addGap(0, 5, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 150, 360, 5));
+        panel_heading.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 150, 360, 5));
 
         date_FromDate.setColorBackground(new java.awt.Color(255, 51, 51));
         date_FromDate.setColorForeground(new java.awt.Color(255, 51, 51));
         date_FromDate.setFont(new java.awt.Font("Tahoma", 0, 17)); // NOI18N
         date_FromDate.setPlaceholder("Select Issue Date");
-        jPanel1.add(date_FromDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, 350, -1));
+        panel_heading.add(date_FromDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, 350, -1));
 
         lbl_IssueDate.setBackground(new java.awt.Color(255, 255, 255));
         lbl_IssueDate.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
         lbl_IssueDate.setForeground(new java.awt.Color(255, 255, 255));
         lbl_IssueDate.setText("Issue Date :");
-        jPanel1.add(lbl_IssueDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, 110, 30));
+        panel_heading.add(lbl_IssueDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, 110, 30));
 
         lbl_DueDate.setBackground(new java.awt.Color(255, 255, 255));
         lbl_DueDate.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
         lbl_DueDate.setForeground(new java.awt.Color(255, 255, 255));
         lbl_DueDate.setText("Due Date :");
-        jPanel1.add(lbl_DueDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 210, 110, 30));
+        panel_heading.add(lbl_DueDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 210, 110, 30));
 
         date_ToDate.setColorBackground(new java.awt.Color(255, 51, 51));
         date_ToDate.setColorForeground(new java.awt.Color(255, 51, 51));
         date_ToDate.setFont(new java.awt.Font("Tahoma", 0, 17)); // NOI18N
         date_ToDate.setPlaceholder("Select Issue Date");
-        jPanel1.add(date_ToDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 210, 350, -1));
+        panel_heading.add(date_ToDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 210, 350, -1));
 
         btn_search.setBackground(new java.awt.Color(255, 51, 51));
         btn_search.setText("Search");
@@ -147,7 +147,7 @@ public class ViewRecords extends javax.swing.JFrame {
                 btn_searchActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_search, new org.netbeans.lib.awtextra.AbsoluteConstraints(1230, 200, 170, 60));
+        panel_heading.add(btn_search, new org.netbeans.lib.awtextra.AbsoluteConstraints(1230, 200, 170, 60));
 
         btnBack.setBackground(new java.awt.Color(255, 51, 51));
         btnBack.setPreferredSize(new java.awt.Dimension(120, 60));
@@ -179,7 +179,7 @@ public class ViewRecords extends javax.swing.JFrame {
                 .addGap(0, 5, Short.MAX_VALUE))
         );
 
-        jPanel1.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 120, 50));
+        panel_heading.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 120, 50));
 
         btnClose.setBackground(new java.awt.Color(255, 51, 51));
 
@@ -208,9 +208,9 @@ public class ViewRecords extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jPanel1.add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(1380, 0, 100, -1));
+        panel_heading.add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(1380, 0, 100, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1480, 280));
+        getContentPane().add(panel_heading, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1480, 280));
 
         panel_table.setBackground(new java.awt.Color(255, 255, 255));
         panel_table.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -306,13 +306,13 @@ public class ViewRecords extends javax.swing.JFrame {
     private rojeru_san.componentes.RSDateChooser date_FromDate;
     private rojeru_san.componentes.RSDateChooser date_ToDate;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblBackManageBooks1;
     private javax.swing.JLabel lbl_DueDate;
     private javax.swing.JLabel lbl_Heading;
     private javax.swing.JLabel lbl_IssueDate;
+    private javax.swing.JPanel panel_heading;
     private javax.swing.JPanel panel_table;
     private rojeru_san.complementos.RSTableMetro tbl_recordDetails;
     // End of variables declaration//GEN-END:variables
