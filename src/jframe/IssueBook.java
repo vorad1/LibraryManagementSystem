@@ -24,6 +24,19 @@ public class IssueBook extends javax.swing.JFrame {
         initComponents();
     }
     
+        // method to clear textfields   
+    public void clearTextfields(){
+        lbl_bookId.setText("");
+        lbl_bookName.setText("");
+        lbl_author.setText("");
+        lbl_dept.setText("");
+        lbl_quantity.setText("");
+        lbl_studentId.setText("");
+        lbl_studentName.setText("");
+        lbl_department.setText("");
+         
+    }
+    
         //to fetch the book details from the database and display it to book details panel
     public void getBookDetails() {
         int bookId = Integer.parseInt(txt_bookId.getText());
@@ -39,9 +52,19 @@ public class IssueBook extends javax.swing.JFrame {
                 lbl_bookName.setText(rs.getString("book_name"));
                 lbl_author.setText(rs.getString("author"));
                 lbl_dept.setText(rs.getString("department"));
-                lbl_quantity.setText(rs.getString("quantity"));
+                String quantity = rs.getString("quantity");
+                if (quantity.equals("0")){
+                    lbl_quantity.setText("Not available");
+                } else {
+                    lbl_quantity.setText("Available");
+                }
+                
+                
+                
             } else {
-                lbl_bookError.setText("invalid book id");
+                clearTextfields();
+                JOptionPane.showMessageDialog(this, "Invalid Book ID");
+                txt_bookId.setText("");
             }
 
         } catch (Exception e) {
@@ -65,7 +88,9 @@ public class IssueBook extends javax.swing.JFrame {
                 lbl_studentName.setText(rs.getString("name"));
                 lbl_department.setText(rs.getString("department"));
             } else {
-                lbl_studentError.setText("invalid student id");
+                clearTextfields();
+                JOptionPane.showMessageDialog(this, "Invalid Student Id");
+                txt_studentId.setText("");
             }
 
         } catch (Exception e) {
@@ -132,7 +157,6 @@ public class IssueBook extends javax.swing.JFrame {
             int rowCount = pst.executeUpdate();
 
             if (rowCount > 0) {
-                JOptionPane.showMessageDialog(this, "book count updated");
                 int initialCount = Integer.parseInt(lbl_quantity.getText());
                 lbl_quantity.setText(Integer.toString(initialCount - 1));
             } else {
@@ -191,13 +215,11 @@ public class IssueBook extends javax.swing.JFrame {
         lbl_studentId = new javax.swing.JLabel();
         lbl_studentName = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        lbl_studentError = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         lbl_BackButton = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
-        lbl_bookError = new javax.swing.JLabel();
         lbl_quantity = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
@@ -281,10 +303,6 @@ public class IssueBook extends javax.swing.JFrame {
         jLabel2.setText("  Student Details");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, 300, -1));
 
-        lbl_studentError.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
-        lbl_studentError.setForeground(new java.awt.Color(204, 204, 0));
-        jPanel1.add(lbl_studentError, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 680, 360, 40));
-
         panel_main.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 0, 420, 810));
 
         jPanel3.setBackground(new java.awt.Color(255, 51, 51));
@@ -340,10 +358,6 @@ public class IssueBook extends javax.swing.JFrame {
         );
 
         jPanel3.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 320, 5));
-
-        lbl_bookError.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
-        lbl_bookError.setForeground(new java.awt.Color(255, 204, 0));
-        jPanel3.add(lbl_bookError, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 680, 350, 40));
 
         lbl_quantity.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
         lbl_quantity.setForeground(new java.awt.Color(255, 255, 255));
@@ -557,12 +571,15 @@ public class IssueBook extends javax.swing.JFrame {
                 if (issueBook() == true) {
                     JOptionPane.showMessageDialog(this, "book issued successfully");
                     updateBookCount();
+                    clearTextfields();
                 } else {
                     JOptionPane.showMessageDialog(this, "can't issue the book");
+                    clearTextfields();
                 }
 
             } else {
                 JOptionPane.showMessageDialog(this, "this student already has this book");
+                clearTextfields();
             }
 
         }
@@ -635,13 +652,11 @@ public class IssueBook extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JLabel lbl_BackButton;
     private javax.swing.JLabel lbl_author;
-    private javax.swing.JLabel lbl_bookError;
     private javax.swing.JLabel lbl_bookId;
     private javax.swing.JLabel lbl_bookName;
     private javax.swing.JLabel lbl_department;
     private javax.swing.JLabel lbl_dept;
     private javax.swing.JLabel lbl_quantity;
-    private javax.swing.JLabel lbl_studentError;
     private javax.swing.JLabel lbl_studentId;
     private javax.swing.JLabel lbl_studentName;
     private javax.swing.JPanel panel_main;

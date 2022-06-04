@@ -49,13 +49,12 @@ public class ReturnBook extends javax.swing.JFrame {
               lbl_dueDate.setText(rs.getString("due_date"));
               lbl_bookError.setText("");
             }else{
-               lbl_bookError.setText("No Record Found");
+               JOptionPane.showMessageDialog(this, "No Record Found");
                
-                lbl_issueId.setText("");
-                lbl_bookName.setText("");
-                lbl_studentName.setText("");
-                lbl_issueDate.setText("");
-                lbl_dueDate.setText("");
+                clearTextfields();
+                txt_bookId.setText("");
+                txt_studentId.setText("");
+                
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -114,6 +113,15 @@ public class ReturnBook extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
+
+    // method to clear textfields
+public void clearTextfields(){
+lbl_issueId.setText("");
+lbl_bookName.setText("");
+lbl_studentName.setText("");
+lbl_issueDate.setText("");
+lbl_dueDate.setText("");
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -413,6 +421,7 @@ public class ReturnBook extends javax.swing.JFrame {
         if(returnBook() == true){
             JOptionPane.showMessageDialog(this, "Book Returned Successfully");
             updateBookCount();
+            clearTextfields();
         }else{
             JOptionPane.showMessageDialog(this, "Book Return Failed");
         }   
