@@ -7,13 +7,16 @@ package jframe;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Dev
+ * @author Dev Vora
  */
 public class ViewRecords extends javax.swing.JFrame {
 
@@ -33,8 +36,8 @@ public class ViewRecords extends javax.swing.JFrame {
     public void setRecordDetails(){
         
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library_ms", "root", "");
+            
+            Connection con = DBConnection.getConnection();
             
             Statement st = con.createStatement();
             ResultSet rs =  st.executeQuery("Select * from issue_book_details");
@@ -63,6 +66,48 @@ public class ViewRecords extends javax.swing.JFrame {
         model.setRowCount(0);
     }
 
+    // to fetch the records within the specified dates
+    public void search(){
+        Date uFromDate = date_FromDate.getDatoFecha();
+        Date uToDate = date_ToDate.getDatoFecha();
+        
+        long l1 = uFromDate.getTime();
+        long l2 = uToDate.getTime();
+        
+        java.sql.Date fromDate = new java.sql.Date(l1);
+        java.sql.Date toDate = new java.sql.Date(l2);
+        
+        try {
+            
+            Connection con = DBConnection.getConnection();
+            
+            String sql = "select * from issue_book_details where issue_date BETWEEN ? and ?";
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setDate(1, fromDate);
+            pst.setDate(2, toDate);
+            
+            ResultSet rs = pst.executeQuery();
+            if (rs.next() == false) {
+                JOptionPane.showMessageDialog(this, "No Record Found");
+            } else {
+            while(rs.next()){
+                String id = rs.getString("id");
+                String bookName = rs.getString("book_name");
+                String studentName = rs.getString("student_name");
+                String issueDate = rs.getString("issue_date");
+                String dueDate = rs.getString("due_date");
+                String status = rs.getString("status");
+                
+                Object [] obj = {id,bookName,studentName,issueDate,dueDate,status};                // using a model to set the values in the table
+                model = (DefaultTableModel)tbl_recordDetails.getModel();
+                // using the array to add data in the table
+                model.addRow(obj);
+            }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -249,7 +294,8 @@ public class ViewRecords extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_searchActionPerformed
-        // TODO add your handling code here:
+        clearTable();
+        search();
     }//GEN-LAST:event_btn_searchActionPerformed
 
     private void tbl_recordDetailsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_recordDetailsMouseClicked
@@ -257,7 +303,9 @@ public class ViewRecords extends javax.swing.JFrame {
     }//GEN-LAST:event_tbl_recordDetailsMouseClicked
 
     private void lblBackManageBooks1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBackManageBooks1MouseClicked
-        // TODO add your handling code here:
+        HomePage homePage = new HomePage();
+        homePage.setVisible(true);
+        dispose();
     }//GEN-LAST:event_lblBackManageBooks1MouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked

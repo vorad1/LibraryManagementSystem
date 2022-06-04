@@ -35,7 +35,7 @@ public class ManageBooks extends javax.swing.JFrame {
     }
     
         //validation
-    public boolean validateLogin(){
+    public boolean validateFields(){
         String bName = txt_BookName.getText();
         String aName = txt_AuthorName.getText();
         String Id = txt_BookID.getText();
@@ -545,7 +545,7 @@ public class ManageBooks extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_AuthorNameActionPerformed
 
     private void btn_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteActionPerformed
-         if (validateLogin()){
+         if (validateFields()){
         if (deleteBook()== true){
             JOptionPane.showMessageDialog(this, "Book Deleted Succesfully");
             clearTable();
@@ -558,7 +558,7 @@ public class ManageBooks extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_deleteActionPerformed
 
     private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
-        if(validateLogin()){ 
+        if(validateFields()){ 
         if (updateBook()== true){
             JOptionPane.showMessageDialog(this, "Book Updated Succesfully");
             clearTable();
@@ -571,7 +571,7 @@ public class ManageBooks extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_updateActionPerformed
 
     private void btn_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_addActionPerformed
-       if(validateLogin()){
+       if(validateFields()){
         if (addBook() == true){
             JOptionPane.showMessageDialog(this, "Book Added Succesfully");
             clearTable();
