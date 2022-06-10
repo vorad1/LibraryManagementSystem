@@ -22,77 +22,74 @@ public class ReturnBook extends javax.swing.JFrame {
     public ReturnBook() {
         initComponents();
     }
-    
-    
+
     //to fetch the issue book details from the database and display it in the panel
-    public void getIssueBookDetails(){
+    public void getIssueBookDetails() {
         int bookId = Integer.parseInt(txt_bookId.getText());
         int studentId = Integer.parseInt(txt_studentId.getText());
-        
+
         try {
             Connection con = DBConnection.getConnection();
             String sql = "select * from issue_book_details where book_id = ? and student_id = ? and status = ?";
-            
+
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setInt(1, bookId);
             pst.setInt(2, studentId);
             pst.setString(3, "pending");
-            
+
             ResultSet rs = pst.executeQuery();
-            
-            if(rs.next()){
-             
-              lbl_issueId.setText(rs.getString("id"));
-              lbl_bookName.setText(rs.getString("book_name"));
-              lbl_studentName.setText(rs.getString("student_name"));
-              lbl_issueDate.setText(rs.getString("issue_date"));
-              lbl_dueDate.setText(rs.getString("due_date"));
-              lbl_bookError.setText("");
-            }else{
-               JOptionPane.showMessageDialog(this, "No Record Found");
-               
+
+            if (rs.next()) {
+
+                lbl_issueId.setText(rs.getString("id"));
+                lbl_bookName.setText(rs.getString("book_name"));
+                lbl_studentName.setText(rs.getString("student_name"));
+                lbl_issueDate.setText(rs.getString("issue_date"));
+                lbl_dueDate.setText(rs.getString("due_date"));
+                lbl_bookError.setText("");
+            } else {
+                JOptionPane.showMessageDialog(this, "No Record Found");
+
                 clearTextfields();
                 txt_bookId.setText("");
                 txt_studentId.setText("");
-                
+
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
-    
+
     // to return the book 
-    public boolean returnBook(){
-      boolean isReturned = false;
-      int bookId = Integer.parseInt(txt_bookId.getText());
-      int studentId = Integer.parseInt(txt_studentId.getText());
-      
+    public boolean returnBook() {
+        boolean isReturned = false;
+        int bookId = Integer.parseInt(txt_bookId.getText());
+        int studentId = Integer.parseInt(txt_studentId.getText());
+
         try {
-            
-           Connection con = DBConnection.getConnection();
-           String sql = "update issue_book_details set status = ? where student_id = ? and book_id = ? and status = ?";
-            
-           PreparedStatement pst = con.prepareStatement(sql);
-           pst.setString(1, "returned");
-           pst.setInt(2, studentId);
-           pst.setInt(3, bookId);
-           pst.setString(4, "pending");
-           
-           
-           int rowCount =  pst.executeUpdate();
+
+            Connection con = DBConnection.getConnection();
+            String sql = "update issue_book_details set status = ? where student_id = ? and book_id = ? and status = ?";
+
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setString(1, "returned");
+            pst.setInt(2, studentId);
+            pst.setInt(3, bookId);
+            pst.setString(4, "pending");
+
+            int rowCount = pst.executeUpdate();
             if (rowCount > 0) {
                 isReturned = true;
-            }else{
+            } else {
                 isReturned = false;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         return isReturned;
     }
-    
+
     //updating book count to increment the quantity in the database
     public void updateBookCount() {
         int bookId = Integer.parseInt(txt_bookId.getText());
@@ -105,7 +102,7 @@ public class ReturnBook extends javax.swing.JFrame {
             int rowCount = pst.executeUpdate();
 
             if (rowCount > 0) {
-                JOptionPane.showMessageDialog(this, "Book Count Updated"); 
+                JOptionPane.showMessageDialog(this, "Book Count Updated");
             } else {
                 JOptionPane.showMessageDialog(this, "Cannot Update Book Count");
             }
@@ -115,13 +112,13 @@ public class ReturnBook extends javax.swing.JFrame {
     }
 
     // method to clear textfields
-public void clearTextfields(){
-lbl_issueId.setText("");
-lbl_bookName.setText("");
-lbl_studentName.setText("");
-lbl_issueDate.setText("");
-lbl_dueDate.setText("");
-}
+    public void clearTextfields() {
+        lbl_issueId.setText("");
+        lbl_bookName.setText("");
+        lbl_studentName.setText("");
+        lbl_issueDate.setText("");
+        lbl_dueDate.setText("");
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -150,14 +147,14 @@ lbl_dueDate.setText("");
         jLabel1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
-        btnClose = new javax.swing.JPanel();
+        btn_Close = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         txt_bookId = new app.bolivia.swing.JCTextField();
         txt_studentId = new app.bolivia.swing.JCTextField();
         jLabel14 = new javax.swing.JLabel();
         btn_returnBook = new rojerusan.RSMaterialButtonCircle();
-        btnBack = new javax.swing.JPanel();
+        btn_Back = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         btn_Find = new rojerusan.RSMaterialButtonCircle();
         jLabel17 = new javax.swing.JLabel();
@@ -280,7 +277,7 @@ lbl_dueDate.setText("");
 
         panel_main.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1370, 220, 350, 5));
 
-        btnClose.setBackground(new java.awt.Color(255, 51, 51));
+        btn_Close.setBackground(new java.awt.Color(255, 51, 51));
 
         jLabel4.setFont(new java.awt.Font("Verdana", 0, 35)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -291,23 +288,23 @@ lbl_dueDate.setText("");
             }
         });
 
-        javax.swing.GroupLayout btnCloseLayout = new javax.swing.GroupLayout(btnClose);
-        btnClose.setLayout(btnCloseLayout);
-        btnCloseLayout.setHorizontalGroup(
-            btnCloseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btnCloseLayout.createSequentialGroup()
+        javax.swing.GroupLayout btn_CloseLayout = new javax.swing.GroupLayout(btn_Close);
+        btn_Close.setLayout(btn_CloseLayout);
+        btn_CloseLayout.setHorizontalGroup(
+            btn_CloseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btn_CloseLayout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
-        btnCloseLayout.setVerticalGroup(
-            btnCloseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnCloseLayout.createSequentialGroup()
+        btn_CloseLayout.setVerticalGroup(
+            btn_CloseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btn_CloseLayout.createSequentialGroup()
                 .addComponent(jLabel4)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        panel_main.add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(1660, 0, 130, 40));
+        panel_main.add(btn_Close, new org.netbeans.lib.awtextra.AbsoluteConstraints(1680, 0, 110, 40));
 
         jLabel9.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 51, 51));
@@ -348,7 +345,7 @@ lbl_dueDate.setText("");
         });
         panel_main.add(btn_returnBook, new org.netbeans.lib.awtextra.AbsoluteConstraints(1320, 660, 410, 70));
 
-        btnBack.setBackground(new java.awt.Color(102, 102, 255));
+        btn_Back.setBackground(new java.awt.Color(102, 102, 255));
 
         jLabel11.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
@@ -360,23 +357,23 @@ lbl_dueDate.setText("");
             }
         });
 
-        javax.swing.GroupLayout btnBackLayout = new javax.swing.GroupLayout(btnBack);
-        btnBack.setLayout(btnBackLayout);
-        btnBackLayout.setHorizontalGroup(
-            btnBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btnBackLayout.createSequentialGroup()
+        javax.swing.GroupLayout btn_BackLayout = new javax.swing.GroupLayout(btn_Back);
+        btn_Back.setLayout(btn_BackLayout);
+        btn_BackLayout.setHorizontalGroup(
+            btn_BackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btn_BackLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel11)
                 .addContainerGap(27, Short.MAX_VALUE))
         );
-        btnBackLayout.setVerticalGroup(
-            btnBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btnBackLayout.createSequentialGroup()
+        btn_BackLayout.setVerticalGroup(
+            btn_BackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btn_BackLayout.createSequentialGroup()
                 .addComponent(jLabel11)
                 .addGap(0, 2, Short.MAX_VALUE))
         );
 
-        panel_main.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        panel_main.add(btn_Back, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         btn_Find.setBackground(new java.awt.Color(102, 102, 255));
         btn_Find.setText("Find");
@@ -418,14 +415,14 @@ lbl_dueDate.setText("");
     }//GEN-LAST:event_txt_studentIdFocusLost
 
     private void btn_returnBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_returnBookActionPerformed
-        if(returnBook() == true){
+        if (returnBook() == true) {
             JOptionPane.showMessageDialog(this, "Book Returned Successfully");
             updateBookCount();
             clearTextfields();
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Book Return Failed");
-        }   
-        
+        }
+
 
     }//GEN-LAST:event_btn_returnBookActionPerformed
 
@@ -472,8 +469,8 @@ lbl_dueDate.setText("");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel btnBack;
-    private javax.swing.JPanel btnClose;
+    private javax.swing.JPanel btn_Back;
+    private javax.swing.JPanel btn_Close;
     private rojerusan.RSMaterialButtonCircle btn_Find;
     private rojerusan.RSMaterialButtonCircle btn_returnBook;
     private javax.swing.JLabel jLabel1;

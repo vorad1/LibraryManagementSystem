@@ -392,7 +392,7 @@ public class IssueBook extends javax.swing.JFrame {
 
         jLabel19.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel19.setText("Quantity : ");
+        jLabel19.setText("Availability : ");
         jPanel3.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 610, 130, -1));
 
         jLabel8.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N

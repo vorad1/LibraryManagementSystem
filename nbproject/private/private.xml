@@ -4,10 +4,13 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/LibraryManagementSystem/src/jframe/ReturnBook.java</file>
+            <file>file:/D:/LibraryManagementSystem/src/jframe/DefaulterList.java</file>
             <file>file:/D:/LibraryManagementSystem/src/jframe/SignupPage.java</file>
             <file>file:/D:/LibraryManagementSystem/src/jframe/ViewRecords.java</file>
+            <file>file:/D:/LibraryManagementSystem/src/jframe/ManageStudents.java</file>
             <file>file:/D:/LibraryManagementSystem/src/jframe/IssueBook.java</file>
             <file>file:/D:/LibraryManagementSystem/src/jframe/DBConnection.java</file>
+            <file>file:/D:/LibraryManagementSystem/src/jframe/HomePage.java</file>
             <file>file:/D:/LibraryManagementSystem/src/jframe/ManageBooks.java</file>
         </group>
     </open-files>

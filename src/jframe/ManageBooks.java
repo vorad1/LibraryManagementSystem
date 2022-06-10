@@ -23,19 +23,17 @@ public class ManageBooks extends javax.swing.JFrame {
     String bookName, author, department;
     int bookID;
     DefaultTableModel model;
-   
-    
+
     /**
      * Creates new form ManageBooks
      */
-    
     public ManageBooks() {
         initComponents();
         setBookDetails();
     }
-    
-        //validation
-    public boolean validateFields(){
+
+    //validation
+    public boolean validateFields() {
         String bName = txt_BookName.getText();
         String aName = txt_AuthorName.getText();
         String Id = txt_BookID.getText();
@@ -52,143 +50,141 @@ public class ManageBooks extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Please enter Author Name");
             return false;
         }
-       
+
         return true;
     }
 
     // to set the book details in the table
-    public void setBookDetails(){
-        
+    public void setBookDetails() {
+
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library_ms", "root", "");
-            
+
             Statement st = con.createStatement();
-            ResultSet rs =  st.executeQuery("Select * from book_details");
-            
-            while(rs.next()){
+            ResultSet rs = st.executeQuery("Select * from book_details");
+
+            while (rs.next()) {
                 String bookId = rs.getString("book_id");
                 String bookName = rs.getString("book_name");
                 String author = rs.getString("author");
                 String department = rs.getString("department");
-                
-                
-                Object [] obj = {bookId,bookName,author,department};                // using a model to set the values in the table
-                model = (DefaultTableModel)tbl_bookDetails.getModel();
+
+                Object[] obj = {bookId, bookName, author, department};                // using a model to set the values in the table
+                model = (DefaultTableModel) tbl_bookDetails.getModel();
                 // using the array to add data in the table
                 model.addRow(obj);
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }      
+        }
     }
-    
+
     // to add books to the database table
-    public boolean addBook(){
-        
+    public boolean addBook() {
+
         boolean isAdded = false;
-        
+
         bookID = Integer.parseInt(txt_BookID.getText());
         bookName = txt_BookName.getText();
         author = txt_AuthorName.getText();
         department = combo_department.getSelectedItem().toString();
-        
+
         try {
             Connection con = DBConnection.getConnection();
             String sql = "insert into book_details values(?,?,?,?,?)";
             PreparedStatement pst = con.prepareStatement(sql);
-            
+
             pst.setInt(1, bookID);
             pst.setString(2, bookName);
             pst.setString(3, author);
             pst.setString(4, department);
-            pst.setInt(5,1);
-            
+            pst.setInt(5, 1);
+
             int rowCount = pst.executeUpdate();
-            if(rowCount > 0){
-               isAdded = true; 
-            }else{
+            if (rowCount > 0) {
+                isAdded = true;
+            } else {
                 isAdded = false;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         return isAdded;
     }
-    
+
     // method to update book details
-    public boolean updateBook(){
-        
+    public boolean updateBook() {
+
         boolean isUpdated = false;
-        
+
         bookID = Integer.parseInt(txt_BookID.getText());
         bookName = txt_BookName.getText();
         author = txt_AuthorName.getText();
         department = combo_department.getSelectedItem().toString();
-        
+
         try {
             Connection con = DBConnection.getConnection();
             String sql = "update book_details set book_name = ?, author = ?, department = ? where book_id = ?";
             PreparedStatement pst = con.prepareStatement(sql);
-            
+
             pst.setString(1, bookName);
             pst.setString(2, author);
             pst.setString(3, department);
             pst.setInt(4, bookID);
-            
+
             int rowCount = pst.executeUpdate();
-            if(rowCount > 0){
-               isUpdated = true; 
-            }else{
-               isUpdated = false;
+            if (rowCount > 0) {
+                isUpdated = true;
+            } else {
+                isUpdated = false;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return isUpdated;
     }
-    
+
     // method to delete book
-     public boolean deleteBook(){
-        
+    public boolean deleteBook() {
+
         boolean isDeleted = false;
-        
+
         bookID = Integer.parseInt(txt_BookID.getText());
-        
-        
+
         try {
-            
+
             Connection con = DBConnection.getConnection();
             String sql = "delete from book_details where book_id = ?";
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setInt(1, bookID);
-           
+
             int rowCount = pst.executeUpdate();
-            if(rowCount > 0){
-               isDeleted = true; 
-            }else{
-               isDeleted = false;
+            if (rowCount > 0) {
+                isDeleted = true;
+            } else {
+                isDeleted = false;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return isDeleted;
     }
-    
+
     // method to clear table   
-    public void clearTable(){
+    public void clearTable() {
         DefaultTableModel model = (DefaultTableModel) tbl_bookDetails.getModel();
         model.setRowCount(0);
     }
-    
+
     // method to clear textfields   
-    public void clearTextfields(){
+    public void clearTextfields() {
         txt_BookID.setText("");
         txt_BookName.setText("");
         txt_AuthorName.setText("");
     }
-            
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -199,7 +195,7 @@ public class ManageBooks extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        pnl_Back = new javax.swing.JPanel();
         lblBackManageBooks = new javax.swing.JLabel();
         lblBookIDLogo = new javax.swing.JLabel();
         lblBookID = new javax.swing.JLabel();
@@ -218,7 +214,7 @@ public class ManageBooks extends javax.swing.JFrame {
         btn_clear = new necesario.RSMaterialButtonCircle();
         combo_department = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
+        pnl_Close = new javax.swing.JPanel();
         lblCancelManageBooks = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
@@ -232,8 +228,8 @@ public class ManageBooks extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(102, 102, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(255, 51, 51));
-        jPanel2.setPreferredSize(new java.awt.Dimension(120, 60));
+        pnl_Back.setBackground(new java.awt.Color(255, 51, 51));
+        pnl_Back.setPreferredSize(new java.awt.Dimension(120, 60));
 
         lblBackManageBooks.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
         lblBackManageBooks.setForeground(new java.awt.Color(255, 255, 255));
@@ -246,24 +242,24 @@ public class ManageBooks extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnl_BackLayout = new javax.swing.GroupLayout(pnl_Back);
+        pnl_Back.setLayout(pnl_BackLayout);
+        pnl_BackLayout.setHorizontalGroup(
+            pnl_BackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_BackLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(lblBackManageBooks, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        pnl_BackLayout.setVerticalGroup(
+            pnl_BackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_BackLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblBackManageBooks, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 140, 70));
+        jPanel1.add(pnl_Back, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 140, 70));
 
         lblBookIDLogo.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
         lblBookIDLogo.setForeground(new java.awt.Color(255, 255, 255));
@@ -412,8 +408,8 @@ public class ManageBooks extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel4.setBackground(new java.awt.Color(102, 102, 255));
-        jPanel4.setPreferredSize(new java.awt.Dimension(120, 60));
+        pnl_Close.setBackground(new java.awt.Color(102, 102, 255));
+        pnl_Close.setPreferredSize(new java.awt.Dimension(120, 60));
 
         lblCancelManageBooks.setFont(new java.awt.Font("Times New Roman", 0, 30)); // NOI18N
         lblCancelManageBooks.setForeground(new java.awt.Color(255, 255, 255));
@@ -425,24 +421,24 @@ public class ManageBooks extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnl_CloseLayout = new javax.swing.GroupLayout(pnl_Close);
+        pnl_Close.setLayout(pnl_CloseLayout);
+        pnl_CloseLayout.setHorizontalGroup(
+            pnl_CloseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_CloseLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(lblCancelManageBooks, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(31, Short.MAX_VALUE))
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+        pnl_CloseLayout.setVerticalGroup(
+            pnl_CloseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_CloseLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblCancelManageBooks, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 0, 80, 60));
+        jPanel3.add(pnl_Close, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 0, 80, 60));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 30)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 51, 51));
@@ -499,10 +495,10 @@ public class ManageBooks extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblBackManageBooksMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBackManageBooksMouseClicked
-       HomePage home = new HomePage();
-       home.setVisible(true);
-       // this will dispose of the current frame and open the homepage frame
-       dispose();
+        HomePage home = new HomePage();
+        home.setVisible(true);
+        // this will dispose of the current frame and open the homepage frame
+        dispose();
     }//GEN-LAST:event_lblBackManageBooksMouseClicked
 
     private void txt_BookIDFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_BookIDFocusGained
@@ -511,7 +507,7 @@ public class ManageBooks extends javax.swing.JFrame {
 
     private void txt_BookIDFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_BookIDFocusLost
         // to check whether username is already in use
-        
+
     }//GEN-LAST:event_txt_BookIDFocusLost
 
     private void txt_BookIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_BookIDActionPerformed
@@ -524,7 +520,7 @@ public class ManageBooks extends javax.swing.JFrame {
 
     private void txt_BookNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_BookNameFocusLost
         // to check whether username is already in use
-       
+
     }//GEN-LAST:event_txt_BookNameFocusLost
 
     private void txt_BookNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_BookNameActionPerformed
@@ -537,7 +533,7 @@ public class ManageBooks extends javax.swing.JFrame {
 
     private void txt_AuthorNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_AuthorNameFocusLost
         // to check whether username is already in use
-      
+
     }//GEN-LAST:event_txt_AuthorNameFocusLost
 
     private void txt_AuthorNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_AuthorNameActionPerformed
@@ -545,65 +541,65 @@ public class ManageBooks extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_AuthorNameActionPerformed
 
     private void btn_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteActionPerformed
-         if (validateFields()){
-        if (deleteBook()== true){
-            JOptionPane.showMessageDialog(this, "Book Deleted Succesfully");
-            clearTable();
-            clearTextfields();
-            setBookDetails();
-        }else{
-            JOptionPane.showMessageDialog(this, "Error Deleting Book");
+        if (validateFields()) {
+            if (deleteBook() == true) {
+                JOptionPane.showMessageDialog(this, "Book Deleted Succesfully");
+                clearTable();
+                clearTextfields();
+                setBookDetails();
+            } else {
+                JOptionPane.showMessageDialog(this, "Error Deleting Book");
+            }
         }
-         }
     }//GEN-LAST:event_btn_deleteActionPerformed
 
     private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
-        if(validateFields()){ 
-        if (updateBook()== true){
-            JOptionPane.showMessageDialog(this, "Book Updated Succesfully");
-            clearTable();
-            clearTextfields();
-            setBookDetails();
-        }else{
-            JOptionPane.showMessageDialog(this, "Error Adding Book");
-        }
+        if (validateFields()) {
+            if (updateBook() == true) {
+                JOptionPane.showMessageDialog(this, "Book Updated Succesfully");
+                clearTable();
+                clearTextfields();
+                setBookDetails();
+            } else {
+                JOptionPane.showMessageDialog(this, "Error Adding Book");
+            }
         }
     }//GEN-LAST:event_btn_updateActionPerformed
 
     private void btn_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_addActionPerformed
-       if(validateFields()){
-        if (addBook() == true){
-            JOptionPane.showMessageDialog(this, "Book Added Succesfully");
-            clearTable();
-            clearTextfields();
-            setBookDetails();
-        }else{
-            JOptionPane.showMessageDialog(this, "Error Updating Book");
+        if (validateFields()) {
+            if (addBook() == true) {
+                JOptionPane.showMessageDialog(this, "Book Added Succesfully");
+                clearTable();
+                clearTextfields();
+                setBookDetails();
+            } else {
+                JOptionPane.showMessageDialog(this, "Error Updating Book");
+            }
         }
-       }
     }//GEN-LAST:event_btn_addActionPerformed
 
     private void lblCancelManageBooksMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCancelManageBooksMouseClicked
-        System.exit(0);    
+        System.exit(0);
     }//GEN-LAST:event_lblCancelManageBooksMouseClicked
 
     private void tbl_bookDetailsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_bookDetailsMouseClicked
-        
+
         int rowNo = tbl_bookDetails.getSelectedRow();
-        
+
         TableModel model = tbl_bookDetails.getModel();
-        
+
         //using the values from the model and setting it in the textfields
         txt_BookID.setText(model.getValueAt(rowNo, 0).toString());
         txt_BookName.setText(model.getValueAt(rowNo, 1).toString());
         txt_AuthorName.setText(model.getValueAt(rowNo, 2).toString());
         combo_department.setSelectedItem(model.getValueAt(rowNo, 3).toString());
-        
+
     }//GEN-LAST:event_tbl_bookDetailsMouseClicked
 
     private void btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearActionPerformed
 
-       clearTextfields();
+        clearTextfields();
     }//GEN-LAST:event_btn_clearActionPerformed
 
     private void combo_departmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_departmentActionPerformed
@@ -653,9 +649,7 @@ public class ManageBooks extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> combo_department;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAuthorName;
@@ -668,6 +662,8 @@ public class ManageBooks extends javax.swing.JFrame {
     private javax.swing.JLabel lblCancelManageBooks;
     private javax.swing.JLabel lblQuantity;
     private javax.swing.JLabel lblQuantityLogo;
+    private javax.swing.JPanel pnl_Back;
+    private javax.swing.JPanel pnl_Close;
     private rojeru_san.complementos.RSTableMetro tbl_bookDetails;
     private app.bolivia.swing.JCTextField txt_AuthorName;
     private app.bolivia.swing.JCTextField txt_BookID;
