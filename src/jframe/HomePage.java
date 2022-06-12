@@ -366,6 +366,9 @@ public class HomePage extends javax.swing.JFrame {
         admnViewIssuedBooks.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adminIcons/icons8_Books_26px.png"))); // NOI18N
         admnViewIssuedBooks.setText("   View Issued Books");
         admnViewIssuedBooks.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                admnViewIssuedBooksMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 admnViewIssuedBooksMouseEntered(evt);
             }
@@ -716,6 +719,12 @@ public class HomePage extends javax.swing.JFrame {
         defaulterList.setVisible(true);
         dispose();
     }//GEN-LAST:event_admnDefaultersListMouseClicked
+
+    private void admnViewIssuedBooksMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admnViewIssuedBooksMouseClicked
+        IssuedBookDetails issuedBookDetails = new IssuedBookDetails();
+        issuedBookDetails.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_admnViewIssuedBooksMouseClicked
 
     /**
      * @param args the command line arguments
