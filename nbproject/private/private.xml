@@ -11,7 +11,9 @@
             <file>file:/D:/LibraryManagementSystem/src/jframe/IssueBook.java</file>
             <file>file:/D:/LibraryManagementSystem/src/jframe/DBConnection.java</file>
             <file>file:/D:/LibraryManagementSystem/src/jframe/HomePage.java</file>
+            <file>file:/D:/LibraryManagementSystem/src/jframe/LoginPage.java</file>
             <file>file:/D:/LibraryManagementSystem/src/jframe/ManageBooks.java</file>
+            <file>file:/D:/LibraryManagementSystem/src/jframe/IssuedBookDetails.java</file>
         </group>
     </open-files>
 </project-private>

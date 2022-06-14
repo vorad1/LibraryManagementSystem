@@ -41,7 +41,7 @@ public class LoginPage extends javax.swing.JFrame {
         return true;
     }
     
-        //verify creds
+    //verify creds
     public void login() {
         String name = txt_username.getText();
         String pwd = txt_password.getText();
@@ -243,7 +243,9 @@ public class LoginPage extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_LoginActionPerformed
 
     private void btn_SignupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SignupActionPerformed
-
+        SignupPage signUp = new SignupPage();
+        signUp.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btn_SignupActionPerformed
 
     private void lbl_CloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_CloseMouseClicked
