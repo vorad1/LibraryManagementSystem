@@ -72,8 +72,7 @@ public class HomePage extends javax.swing.JFrame {
     public void setStudentDetailsToTable(){
         
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library_ms", "root", "");
+            Connection con = DBConnection.getConnection();
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("select * from student_details");
             
@@ -95,8 +94,7 @@ public class HomePage extends javax.swing.JFrame {
     public void setBookDetails(){
         
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library_ms", "root", "");
+            Connection con = DBConnection.getConnection();
             
             Statement st = con.createStatement();
             ResultSet rs =  st.executeQuery("Select * from book_details");
