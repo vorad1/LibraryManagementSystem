@@ -30,37 +30,35 @@ public class HomePage extends javax.swing.JFrame {
     Color mouseEnterColor = new Color(0, 0, 0);
     Color mouseExitColor = new Color(51, 51, 51);
     DefaultTableModel model;
-    
+
     public HomePage() {
         initComponents();
         showPieChart();
         setBookDetails();
         setStudentDetailsToTable();
     }
-    
-    public void showPieChart(){
-        
+
+    public void showPieChart() {
         //create dataset
-      DefaultPieDataset barDataset = new DefaultPieDataset( );
-      barDataset.setValue( "IPhone 5s" , new Double( 20 ) );  
-      barDataset.setValue( "SamSung Grand" , new Double( 20 ) );   
-      barDataset.setValue( "MotoG" , new Double( 40 ) );    
-      barDataset.setValue( "Nokia Lumia" , new Double( 10 ) );  
-      
-      //create chart
-       JFreeChart piechart = ChartFactory.createPieChart("mobile sales",barDataset, false,true,false);//explain
-      
-        PiePlot piePlot =(PiePlot) piechart.getPlot();
-      
-       //changing pie chart blocks colors
-        piePlot.setSectionPaint("IPhone 5s", new Color(255,255,102));
-        piePlot.setSectionPaint("SamSung Grand", new Color(102,255,102));
-        piePlot.setSectionPaint("MotoG", new Color(255,102,153));
-        piePlot.setSectionPaint("Nokia Lumia", new Color(0,204,204));
-      
-       
+        DefaultPieDataset barDataset = new DefaultPieDataset();
+        barDataset.setValue("IPhone 5s", new Double(20));
+        barDataset.setValue("SamSung Grand", new Double(20));
+        barDataset.setValue("MotoG", new Double(40));
+        barDataset.setValue("Nokia Lumia", new Double(10));
+
+        //create chart
+        JFreeChart piechart = ChartFactory.createPieChart("mobile sales", barDataset, false, true, false);//explain
+
+        PiePlot piePlot = (PiePlot) piechart.getPlot();
+
+        //changing pie chart blocks colors
+        piePlot.setSectionPaint("IPhone 5s", new Color(255, 255, 102));
+        piePlot.setSectionPaint("SamSung Grand", new Color(102, 255, 102));
+        piePlot.setSectionPaint("MotoG", new Color(255, 102, 153));
+        piePlot.setSectionPaint("Nokia Lumia", new Color(0, 204, 204));
+
         piePlot.setBackgroundPaint(Color.white);
-        
+
         //create chartPanel to display chart(graph)
         ChartPanel barChartPanel = new ChartPanel(piechart);
         PanelPiChart.removeAll();
@@ -68,54 +66,51 @@ public class HomePage extends javax.swing.JFrame {
         PanelPiChart.validate();
     }
 
-     //to set the student details into the table
-    public void setStudentDetailsToTable(){
-        
+    //to set the student details into the table
+    public void setStudentDetailsToTable() {
         try {
             Connection con = DBConnection.getConnection();
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("select * from student_details");
-            
-            while(rs.next()){
+
+            while (rs.next()) {
                 String StudentId = rs.getString("student_id");
                 String StudentName = rs.getString("name");
                 String department = rs.getString("department");
-                
-                Object[] obj = {StudentId,StudentName,department};
-                model =(DefaultTableModel) tbl_studentDetails.getModel();
+
+                Object[] obj = {StudentId, StudentName, department};
+                model = (DefaultTableModel) tbl_studentDetails.getModel();
                 model.addRow(obj);
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }  
+        }
     }
-    
-     // to set the book details in the table
-    public void setBookDetails(){
-        
+
+    // to set the book details in the table
+    public void setBookDetails() {
         try {
             Connection con = DBConnection.getConnection();
-            
+
             Statement st = con.createStatement();
-            ResultSet rs =  st.executeQuery("Select * from book_details");
-            
-            while(rs.next()){
+            ResultSet rs = st.executeQuery("Select * from book_details");
+
+            while (rs.next()) {
                 String bookId = rs.getString("book_id");
                 String bookName = rs.getString("book_name");
                 String author = rs.getString("author");
                 String department = rs.getString("department");
-                
-                
-                Object [] obj = {bookId,bookName,author,department};                // using a model to set the values in the table
-                model = (DefaultTableModel)tbl_bookDetails.getModel();
+
+                Object[] obj = {bookId, bookName, author, department};                // using a model to set the values in the table
+                model = (DefaultTableModel) tbl_bookDetails.getModel();
                 // using the array to add data in the table
                 model.addRow(obj);
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }      
+        }
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -284,7 +279,7 @@ public class HomePage extends javax.swing.JFrame {
                 admnIssueBookMouseExited(evt);
             }
         });
-        pnl_IssueBook.add(admnIssueBook, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 200, 30));
+        pnl_IssueBook.add(admnIssueBook, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 15, 200, 30));
 
         jPanel3.add(pnl_IssueBook, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 430, 340, 60));
 
@@ -539,6 +534,7 @@ public class HomePage extends javax.swing.JFrame {
         tbl_bookDetails.setFuenteHead(new java.awt.Font("Yu Gothic UI Semibold", 1, 20)); // NOI18N
         tbl_bookDetails.setIntercellSpacing(new java.awt.Dimension(0, 0));
         tbl_bookDetails.setRowHeight(40);
+        tbl_bookDetails.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tbl_bookDetails);
 
         jPanel14.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(127, 628, 839, 208));
@@ -566,6 +562,7 @@ public class HomePage extends javax.swing.JFrame {
         tbl_studentDetails.setFuenteHead(new java.awt.Font("Yu Gothic UI Semibold", 1, 20)); // NOI18N
         tbl_studentDetails.setIntercellSpacing(new java.awt.Dimension(0, 0));
         tbl_studentDetails.setRowHeight(40);
+        tbl_studentDetails.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(tbl_studentDetails);
 
         jPanel14.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(127, 333, 839, 208));
@@ -616,7 +613,6 @@ public class HomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_admnManageStudentsMouseExited
 
     private void admnIssueBookMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admnIssueBookMouseClicked
-        
         IssueBook issueBook = new IssueBook();
         issueBook.setVisible(true);
         dispose();
@@ -641,7 +637,7 @@ public class HomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_pnl_ReturnBookMouseEntered
 
     private void pnl_ReturnBookMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnl_ReturnBookMouseExited
-        
+
     }//GEN-LAST:event_pnl_ReturnBookMouseExited
 
     private void admnViewRecordsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admnViewRecordsMouseClicked
@@ -651,27 +647,27 @@ public class HomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_admnViewRecordsMouseClicked
 
     private void pnl_ViewRecordsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnl_ViewRecordsMouseEntered
-        
+
     }//GEN-LAST:event_pnl_ViewRecordsMouseEntered
 
     private void pnl_ViewRecordsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnl_ViewRecordsMouseExited
-        
+
     }//GEN-LAST:event_pnl_ViewRecordsMouseExited
 
     private void pnl_ViewIssuedBooksMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnl_ViewIssuedBooksMouseEntered
-        
+
     }//GEN-LAST:event_pnl_ViewIssuedBooksMouseEntered
 
     private void pnl_ViewIssuedBooksMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnl_ViewIssuedBooksMouseExited
-        
+
     }//GEN-LAST:event_pnl_ViewIssuedBooksMouseExited
 
     private void pnl_DefaultersListMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnl_DefaultersListMouseEntered
-        
+
     }//GEN-LAST:event_pnl_DefaultersListMouseEntered
 
     private void pnl_DefaultersListMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnl_DefaultersListMouseExited
-       
+
     }//GEN-LAST:event_pnl_DefaultersListMouseExited
 
     private void admnReturnBookMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admnReturnBookMouseEntered
