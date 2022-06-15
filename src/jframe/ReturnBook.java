@@ -83,7 +83,6 @@ public class ReturnBook extends javax.swing.JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return isReturned;
     }
 
@@ -91,18 +90,15 @@ public class ReturnBook extends javax.swing.JFrame {
     public void updateBookCount() {
         int bookId = Integer.parseInt(txt_bookId.getText());
         try {
+            
             Connection con = DBConnection.getConnection();
             String sql = "update book_details set quantity = quantity + 1 where book_id = ?";
+            
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setInt(1, bookId);
 
-            int rowCount = pst.executeUpdate();
-
-            if (rowCount > 0) {
-                JOptionPane.showMessageDialog(this, "Book Count Updated");
-            } else {
-                JOptionPane.showMessageDialog(this, "Cannot Update Book Count");
-            }
+            pst.executeUpdate();
+            
         } catch (Exception e) {
             e.printStackTrace();
         }

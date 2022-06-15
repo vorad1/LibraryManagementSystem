@@ -104,7 +104,7 @@ public class IssueBook extends javax.swing.JFrame {
         java.util.Date uIssueDate = date_issueDate.getDatoFecha();
         java.util.Date uDueDate = date_dueDate.getDatoFecha();
 
-        Long l1 = uIssueDate.getTime();
+        long l1 = uIssueDate.getTime();
         long l2 = uDueDate.getTime();
 
         java.sql.Date sIssueDate = new java.sql.Date(l1);
@@ -129,7 +129,6 @@ public class IssueBook extends javax.swing.JFrame {
             } else {
                 isIssued = false;
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -145,14 +144,8 @@ public class IssueBook extends javax.swing.JFrame {
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setInt(1, bookId);
 
-            int rowCount = pst.executeUpdate();
-
-            if (rowCount > 0) {
-                int initialCount = Integer.parseInt(lbl_quantity.getText());
-                lbl_quantity.setText(Integer.toString(initialCount - 1));
-            } else {
-                JOptionPane.showMessageDialog(this, "can't update book count");
-            }
+            pst.executeUpdate();
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -495,7 +488,7 @@ public class IssueBook extends javax.swing.JFrame {
         date_issueDate.setColorForeground(new java.awt.Color(255, 51, 51));
         date_issueDate.setFont(new java.awt.Font("Tahoma", 0, 17)); // NOI18N
         date_issueDate.setPlaceholder("Select Issue Date");
-        panel_main.add(date_issueDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 500, 350, -1));
+        panel_main.add(date_issueDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 510, 350, -1));
 
         jLabel14.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 51, 51));
@@ -552,20 +545,20 @@ public class IssueBook extends javax.swing.JFrame {
 
     private void btn_IssueBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_IssueBookActionPerformed
         if (lbl_quantity.getText().equals("0")) {
-            JOptionPane.showMessageDialog(this, "book is not available");
+            JOptionPane.showMessageDialog(this, "Book not available");
         } else {
             if (isAlreadyIssued() == false) {
 
                 if (issueBook() == true) {
-                    JOptionPane.showMessageDialog(this, "book issued successfully");
+                    JOptionPane.showMessageDialog(this, "Book Issued Successfully");
                     updateBookCount();
                     clearTextfields();
                 } else {
-                    JOptionPane.showMessageDialog(this, "can't issue the book");
+                    JOptionPane.showMessageDialog(this, "Cannot Issue This Book");
                     clearTextfields();
                 }
             } else {
-                JOptionPane.showMessageDialog(this, "this student already has this book");
+                JOptionPane.showMessageDialog(this, "This student already has the book");
                 clearTextfields();
             }
         }
