@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
 public class IssueBook extends javax.swing.JFrame {
 
     /**
-     * Creates new form IBook
+     * Creates new form Issue Book
      */
     public IssueBook() {
         initComponents();
@@ -95,6 +95,7 @@ public class IssueBook extends javax.swing.JFrame {
 
     //insert issue book details to database
     public boolean issueBook() {
+        
         boolean isIssued = false;
         int bookId = Integer.parseInt(txt_bookId.getText());
         int studentId = Integer.parseInt(txt_studentId.getText());
