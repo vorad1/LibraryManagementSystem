@@ -23,9 +23,9 @@ public class IssueBook extends javax.swing.JFrame {
     public IssueBook() {
         initComponents();
     }
-    
-        // method to clear textfields   
-    public void clearTextfields(){
+
+    // method to clear textfields   
+    public void clearTextfields() {
         lbl_bookId.setText("");
         lbl_bookName.setText("");
         lbl_author.setText("");
@@ -34,10 +34,11 @@ public class IssueBook extends javax.swing.JFrame {
         lbl_studentId.setText("");
         lbl_studentName.setText("");
         lbl_department.setText("");
-         
+        txt_bookId.setText("");
+        txt_studentId.setText("");
     }
-    
-        //to fetch the book details from the database and display it to book details panel
+
+    //to fetch the book details from the database and display it to book details panel
     public void getBookDetails() {
         int bookId = Integer.parseInt(txt_bookId.getText());
 
@@ -53,27 +54,22 @@ public class IssueBook extends javax.swing.JFrame {
                 lbl_author.setText(rs.getString("author"));
                 lbl_dept.setText(rs.getString("department"));
                 String quantity = rs.getString("quantity");
-                if (quantity.equals("0")){
+                if (quantity.equals("0")) {
                     lbl_quantity.setText("Not available");
                 } else {
                     lbl_quantity.setText("Available");
                 }
-                
-                
-                
             } else {
                 clearTextfields();
                 JOptionPane.showMessageDialog(this, "Invalid Book ID");
                 txt_bookId.setText("");
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
-    
-        //to fetch the student details from the database and display it to student details panel
+
+    //to fetch the student details from the database and display it to student details panel
     public void getStudentDetails() {
         int studentId = Integer.parseInt(txt_studentId.getText());
 
@@ -92,14 +88,12 @@ public class IssueBook extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Invalid Student Id");
                 txt_studentId.setText("");
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
-    
-        //insert issue book details to database
+
+    //insert issue book details to database
     public boolean issueBook() {
         boolean isIssued = false;
         int bookId = Integer.parseInt(txt_bookId.getText());
@@ -139,13 +133,10 @@ public class IssueBook extends javax.swing.JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return isIssued;
-
     }
-    
-    
-        //updating book count
+
+    //updating book count
     public void updateBookCount() {
         int bookId = Integer.parseInt(txt_bookId.getText());
         try {
@@ -166,8 +157,8 @@ public class IssueBook extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
-    
-        //checking whether book already allocated or not
+
+    //checking whether book already allocated or not
     public boolean isAlreadyIssued() {
 
         boolean isAlreadyIssued = false;
@@ -193,7 +184,6 @@ public class IssueBook extends javax.swing.JFrame {
             e.printStackTrace();
         }
         return isAlreadyIssued;
-
     }
 
     /**
@@ -457,10 +447,10 @@ public class IssueBook extends javax.swing.JFrame {
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addContainerGap(39, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -469,7 +459,7 @@ public class IssueBook extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        panel_main.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 0, 130, 40));
+        panel_main.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(1300, 0, 110, 50));
 
         jLabel9.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 51, 51));
@@ -515,7 +505,7 @@ public class IssueBook extends javax.swing.JFrame {
         jLabel18.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 51, 51));
         jLabel18.setText("Due Date : ");
-        panel_main.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 600, 110, 30));
+        panel_main.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 590, 110, 30));
 
         date_dueDate.setColorBackground(new java.awt.Color(255, 51, 51));
         date_dueDate.setColorForeground(new java.awt.Color(255, 51, 51));
@@ -549,10 +539,9 @@ public class IssueBook extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void txt_bookIdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_bookIdFocusLost
-         if (!txt_bookId.getText().equals("")) {
+        if (!txt_bookId.getText().equals("")) {
             getBookDetails();
         }
-
     }//GEN-LAST:event_txt_bookIdFocusLost
 
     private void txt_studentIdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_studentIdFocusLost
@@ -565,7 +554,6 @@ public class IssueBook extends javax.swing.JFrame {
         if (lbl_quantity.getText().equals("0")) {
             JOptionPane.showMessageDialog(this, "book is not available");
         } else {
-
             if (isAlreadyIssued() == false) {
 
                 if (issueBook() == true) {
@@ -576,14 +564,11 @@ public class IssueBook extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "can't issue the book");
                     clearTextfields();
                 }
-
             } else {
                 JOptionPane.showMessageDialog(this, "this student already has this book");
                 clearTextfields();
             }
-
         }
-
     }//GEN-LAST:event_btn_IssueBookActionPerformed
 
     /**

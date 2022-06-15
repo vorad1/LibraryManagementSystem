@@ -370,7 +370,6 @@ public class SignupPage extends javax.swing.JFrame {
         if (checkDuplicateUser() == true) {
             JOptionPane.showMessageDialog(this, "Username already exists");
         }
-
     }//GEN-LAST:event_txt_usernameFocusLost
 
     private void txt_usernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_usernameFocusGained

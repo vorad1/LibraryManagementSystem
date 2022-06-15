@@ -40,7 +40,6 @@ public class ReturnBook extends javax.swing.JFrame {
             ResultSet rs = pst.executeQuery();
 
             if (rs.next()) {
-
                 lbl_issueId.setText(rs.getString("id"));
                 lbl_bookName.setText(rs.getString("book_name"));
                 lbl_studentName.setText(rs.getString("student_name"));
@@ -49,11 +48,9 @@ public class ReturnBook extends javax.swing.JFrame {
                 lbl_bookError.setText("");
             } else {
                 JOptionPane.showMessageDialog(this, "No Record Found");
-
                 clearTextfields();
                 txt_bookId.setText("");
                 txt_studentId.setText("");
-
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -118,6 +115,8 @@ public class ReturnBook extends javax.swing.JFrame {
         lbl_studentName.setText("");
         lbl_issueDate.setText("");
         lbl_dueDate.setText("");
+        txt_bookId.setText("");
+        txt_studentId.setText("");
     }
 
     /**
@@ -196,7 +195,7 @@ public class ReturnBook extends javax.swing.JFrame {
 
         lbl_issueDate.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
         lbl_issueDate.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel3.add(lbl_issueDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 550, 210, 40));
+        jPanel3.add(lbl_issueDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 540, 210, 40));
 
         jLabel15.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
@@ -210,15 +209,15 @@ public class ReturnBook extends javax.swing.JFrame {
 
         lbl_bookName.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
         lbl_bookName.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel3.add(lbl_bookName, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 410, 210, 40));
+        jPanel3.add(lbl_bookName, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 400, 210, 40));
 
         lbl_studentName.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
         lbl_studentName.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel3.add(lbl_studentName, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 480, 210, 40));
+        jPanel3.add(lbl_studentName, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 470, 210, 40));
 
         lbl_issueId.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
         lbl_issueId.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel3.add(lbl_issueId, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 340, 210, 40));
+        jPanel3.add(lbl_issueId, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 330, 210, 40));
 
         jLabel19.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
@@ -232,7 +231,7 @@ public class ReturnBook extends javax.swing.JFrame {
 
         lbl_dueDate.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
         lbl_dueDate.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel3.add(lbl_dueDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 620, 210, 40));
+        jPanel3.add(lbl_dueDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 610, 210, 40));
 
         jLabel18.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
@@ -304,7 +303,7 @@ public class ReturnBook extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        panel_main.add(btn_Close, new org.netbeans.lib.awtextra.AbsoluteConstraints(1680, 0, 110, 40));
+        panel_main.add(btn_Close, new org.netbeans.lib.awtextra.AbsoluteConstraints(1680, 0, 110, 50));
 
         jLabel9.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 51, 51));
@@ -422,8 +421,6 @@ public class ReturnBook extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Book Return Failed");
         }
-
-
     }//GEN-LAST:event_btn_returnBookActionPerformed
 
     private void btn_FindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_FindActionPerformed

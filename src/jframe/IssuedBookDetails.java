@@ -20,19 +20,19 @@ public class IssuedBookDetails extends javax.swing.JFrame {
     /**
      * Creates new form IssuedBookDetails
      */
-     DefaultTableModel model;
+    DefaultTableModel model;
+
     public IssuedBookDetails() {
         initComponents();
         setIssueBookDetailsToTable();
     }
-    
-     //to set the book details into the table
-    public void setIssueBookDetailsToTable() {
 
+    //to set the book details into the table
+    public void setIssueBookDetailsToTable() {
         try {
             Connection con = DBConnection.getConnection();
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("select * from issue_book_details where status = '"+"pending"+"'");
+            ResultSet rs = st.executeQuery("select * from issue_book_details where status = '" + "pending" + "'");
 
             while (rs.next()) {
                 String id = rs.getString("id");
@@ -49,7 +49,6 @@ public class IssuedBookDetails extends javax.swing.JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     /**
@@ -145,18 +144,18 @@ public class IssuedBookDetails extends javax.swing.JFrame {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(45, Short.MAX_VALUE)
-                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(25, Short.MAX_VALUE)
+                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jLabel14)
+                .addGap(0, 11, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 0, 100, 40));
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1300, 0, 80, 50));
 
         tbl_issueBookDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -176,6 +175,7 @@ public class IssuedBookDetails extends javax.swing.JFrame {
         tbl_issueBookDetails.setFuenteHead(new java.awt.Font("Yu Gothic UI Semibold", 1, 20)); // NOI18N
         tbl_issueBookDetails.setIntercellSpacing(new java.awt.Dimension(0, 0));
         tbl_issueBookDetails.setRowHeight(40);
+        tbl_issueBookDetails.getTableHeader().setReorderingAllowed(false);
         tbl_issueBookDetails.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbl_issueBookDetailsMouseClicked(evt);

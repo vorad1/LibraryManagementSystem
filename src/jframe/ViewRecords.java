@@ -32,7 +32,6 @@ public class ViewRecords extends javax.swing.JFrame {
 
     // to set the book details in the table
     public void setRecordDetails() {
-
         try {
 
             Connection con = DBConnection.getConnection();
@@ -48,7 +47,8 @@ public class ViewRecords extends javax.swing.JFrame {
                 String dueDate = rs.getString("due_date");
                 String status = rs.getString("status");
 
-                Object[] obj = {id, bookName, studentName, issueDate, dueDate, status};                // using a model to set the values in the table
+                Object[] obj = {id, bookName, studentName, issueDate, dueDate, status};
+                // using a model to set the values in the table
                 model = (DefaultTableModel) tbl_recordDetails.getModel();
                 // using the array to add data in the table
                 model.addRow(obj);
@@ -96,7 +96,8 @@ public class ViewRecords extends javax.swing.JFrame {
                     String dueDate = rs.getString("due_date");
                     String status = rs.getString("status");
 
-                    Object[] obj = {id, bookName, studentName, issueDate, dueDate, status};                // using a model to set the values in the table
+                    Object[] obj = {id, bookName, studentName, issueDate, dueDate, status};
+                    // using a model to set the values in the table
                     model = (DefaultTableModel) tbl_recordDetails.getModel();
                     // using the array to add data in the table
                     model.addRow(obj);
@@ -241,10 +242,10 @@ public class ViewRecords extends javax.swing.JFrame {
         btn_Close.setLayout(btn_CloseLayout);
         btn_CloseLayout.setHorizontalGroup(
             btn_CloseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btn_CloseLayout.createSequentialGroup()
-                .addGap(39, 39, 39)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btn_CloseLayout.createSequentialGroup()
+                .addContainerGap(30, Short.MAX_VALUE)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap())
         );
         btn_CloseLayout.setVerticalGroup(
             btn_CloseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -253,7 +254,7 @@ public class ViewRecords extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        panel_heading.add(btn_Close, new org.netbeans.lib.awtextra.AbsoluteConstraints(1380, 0, 100, -1));
+        panel_heading.add(btn_Close, new org.netbeans.lib.awtextra.AbsoluteConstraints(1390, 0, 90, 50));
 
         btn_viewAll.setBackground(new java.awt.Color(255, 51, 51));
         btn_viewAll.setText("View All");
@@ -287,6 +288,7 @@ public class ViewRecords extends javax.swing.JFrame {
         tbl_recordDetails.setFuenteHead(new java.awt.Font("Yu Gothic UI Semibold", 1, 20)); // NOI18N
         tbl_recordDetails.setIntercellSpacing(new java.awt.Dimension(0, 0));
         tbl_recordDetails.setRowHeight(40);
+        tbl_recordDetails.getTableHeader().setReorderingAllowed(false);
         tbl_recordDetails.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbl_recordDetailsMouseClicked(evt);
@@ -326,8 +328,8 @@ public class ViewRecords extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void btn_viewAllMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_viewAllMouseClicked
-       clearTable();
-       setRecordDetails();
+        clearTable();
+        setRecordDetails();
     }//GEN-LAST:event_btn_viewAllMouseClicked
 
     /**

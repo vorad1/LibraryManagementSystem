@@ -23,19 +23,17 @@ public class ManageStudents extends javax.swing.JFrame {
     /**
      * Creates new form ManageStudents
      */
-    
-    String studentName,department;
+    String studentName, department;
     int studentId;
     DefaultTableModel model;
-    
+
     public ManageStudents() {
         initComponents();
         setStudentDetailsToTable();
-        
     }
-    
-            //validation
-    public boolean validateLogin(){
+
+    //validation
+    public boolean validateLogin() {
         String sId = txt_studentId.getText();
         String sName = txt_studentName.getText();
 
@@ -47,40 +45,38 @@ public class ManageStudents extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Please enter Student Name");
             return false;
         }
-       
         return true;
     }
-    
+
     //to set the student details into the table
-    public void setStudentDetailsToTable(){
-        
+    public void setStudentDetailsToTable() {
+
         try {
             Connection con = DBConnection.getConnection();
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("select * from student_details");
-            
-            while(rs.next()){
+
+            while (rs.next()) {
                 String StudentId = rs.getString("student_id");
                 String StudentName = rs.getString("name");
                 String department = rs.getString("department");
-                
-                Object[] obj = {StudentId,StudentName,department};
-                model =(DefaultTableModel) tbl_studentDetails.getModel();
+
+                Object[] obj = {StudentId, StudentName, department};
+                model = (DefaultTableModel) tbl_studentDetails.getModel();
                 model.addRow(obj);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
     }
-    
+
     //to add student to student_details table
-    public boolean addStudent(){
+    public boolean addStudent() {
         boolean isAdded = false;
         studentId = Integer.parseInt(txt_studentId.getText());
         studentName = txt_studentName.getText();
         department = combo_department.getSelectedItem().toString();
-        
+
         try {
             Connection con = DBConnection.getConnection();
             String sql = "insert into student_details values(?,?,?)";
@@ -88,28 +84,26 @@ public class ManageStudents extends javax.swing.JFrame {
             pst.setInt(1, studentId);
             pst.setString(2, studentName);
             pst.setString(3, department);
-            
+
             int rowCount = pst.executeUpdate();
             if (rowCount > 0) {
                 isAdded = true;
-            }else{
+            } else {
                 isAdded = false;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return isAdded;
-        
     }
-    
+
     //to update student details
-    
-    public boolean updateStudent(){
-      boolean isUpdated = false;
-       studentId = Integer.parseInt(txt_studentId.getText());
+    public boolean updateStudent() {
+        boolean isUpdated = false;
+        studentId = Integer.parseInt(txt_studentId.getText());
         studentName = txt_studentName.getText();
         department = combo_department.getSelectedItem().toString();
-        
+
         try {
             Connection con = DBConnection.getConnection();
             String sql = "update student_details set name = ?,department = ? where student_id = ?";
@@ -117,53 +111,50 @@ public class ManageStudents extends javax.swing.JFrame {
             pst.setString(1, studentName);
             pst.setString(2, department);
             pst.setInt(3, studentId);
-            
+
             int rowCount = pst.executeUpdate();
             if (rowCount > 0) {
                 isUpdated = true;
-            }else{
+            } else {
                 isUpdated = false;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
         return isUpdated;
     }
-    
+
     //method to delete book detail
-    public boolean deleteStudent(){
+    public boolean deleteStudent() {
         boolean isDeleted = false;
         studentId = Integer.parseInt(txt_studentId.getText());
-        
+
         try {
             Connection con = DBConnection.getConnection();
             String sql = "delete from student_details where student_id = ? ";
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setInt(1, studentId);
-            
+
             int rowCount = pst.executeUpdate();
             if (rowCount > 0) {
                 isDeleted = true;
-            }else{
+            } else {
                 isDeleted = false;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
         return isDeleted;
     }
-    
+
     //method to clear table
-    
-    public void clearTable(){
+    public void clearTable() {
         DefaultTableModel model = (DefaultTableModel) tbl_studentDetails.getModel();
         model.setRowCount(0);
     }
-    
-        // method to clear textfields   
-    public void clearTextfields(){
+
+    // method to clear textfields   
+    public void clearTextfields() {
         txt_studentId.setText("");
         txt_studentName.setText("");
     }
@@ -360,10 +351,10 @@ public class ManageStudents extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(46, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addGap(24, 24, 24))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -372,7 +363,7 @@ public class ManageStudents extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jPanel3.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 0, 130, 40));
+        jPanel3.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 0, 120, 50));
 
         tbl_studentDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -429,7 +420,7 @@ public class ManageStudents extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-     System.exit(0);
+        System.exit(0);
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void txt_studentIdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_studentIdFocusLost
@@ -441,61 +432,58 @@ public class ManageStudents extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_studentNameFocusLost
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-     HomePage home = new HomePage();
-     home.setVisible(true);
-     dispose();
+        HomePage home = new HomePage();
+        home.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void tbl_studentDetailsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_studentDetailsMouseClicked
-    
+
         int rowNo = tbl_studentDetails.getSelectedRow();
         TableModel model = tbl_studentDetails.getModel();
-        
+
         txt_studentId.setText(model.getValueAt(rowNo, 0).toString());
         txt_studentName.setText(model.getValueAt(rowNo, 1).toString());
         combo_department.setSelectedItem(model.getValueAt(rowNo, 2).toString());
-        
-       
-
     }//GEN-LAST:event_tbl_studentDetailsMouseClicked
 
     private void btn_AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddActionPerformed
-        if (validateLogin()){
-        if (addStudent()== true) {
-            JOptionPane.showMessageDialog(this, "Student Added");
-            clearTable();
-            clearTextfields();
-            setStudentDetailsToTable();
-        }else{
-            JOptionPane.showMessageDialog(this, "Student Addition Failed");
-        }
+        if (validateLogin()) {
+            if (addStudent() == true) {
+                JOptionPane.showMessageDialog(this, "Student Added");
+                clearTable();
+                clearTextfields();
+                setStudentDetailsToTable();
+            } else {
+                JOptionPane.showMessageDialog(this, "Student Addition Failed");
+            }
         }
     }//GEN-LAST:event_btn_AddActionPerformed
 
     private void btn_UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_UpdateActionPerformed
-       if (validateLogin()){
-        if (updateStudent()== true) {
-            JOptionPane.showMessageDialog(this, "Student Updated");
-            clearTable();
-            clearTextfields();
-            setStudentDetailsToTable();
-        }else{
-            JOptionPane.showMessageDialog(this, "student Updation Failed");
+        if (validateLogin()) {
+            if (updateStudent() == true) {
+                JOptionPane.showMessageDialog(this, "Student Updated");
+                clearTable();
+                clearTextfields();
+                setStudentDetailsToTable();
+            } else {
+                JOptionPane.showMessageDialog(this, "student Updation Failed");
+            }
         }
-       }
     }//GEN-LAST:event_btn_UpdateActionPerformed
 
     private void btn_DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DeleteActionPerformed
-     if (validateLogin()){
-        if (deleteStudent()== true) {
-            JOptionPane.showMessageDialog(this, "student Deleted");
-            clearTable();
-            clearTextfields();
-            setStudentDetailsToTable();
-        }else{
-            JOptionPane.showMessageDialog(this, "student Deletion Failed");
+        if (validateLogin()) {
+            if (deleteStudent() == true) {
+                JOptionPane.showMessageDialog(this, "student Deleted");
+                clearTable();
+                clearTextfields();
+                setStudentDetailsToTable();
+            } else {
+                JOptionPane.showMessageDialog(this, "student Deletion Failed");
+            }
         }
-     }
     }//GEN-LAST:event_btn_DeleteActionPerformed
 
     private void combo_departmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_departmentActionPerformed

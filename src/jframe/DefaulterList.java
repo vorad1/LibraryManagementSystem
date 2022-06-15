@@ -13,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Dev
+ * @author Dev Vora
  */
 public class DefaulterList extends javax.swing.JFrame {
 
@@ -29,8 +29,10 @@ public class DefaulterList extends javax.swing.JFrame {
 
     // to set the book details in the table beyond the due date
     public void setRecordDetails() {
+        
         long l = System.currentTimeMillis();
         Date todaysDate = new Date(l);
+        
         try {
 
             Connection con = DBConnection.getConnection();
@@ -38,6 +40,7 @@ public class DefaulterList extends javax.swing.JFrame {
             PreparedStatement pst = con.prepareStatement("select * from issue_book_details where due_date < ? and status = ? ");
             pst.setDate(1, todaysDate);
             pst.setString(2, "pending");
+            
             ResultSet rs = pst.executeQuery();
 
             while (rs.next()) {
@@ -182,6 +185,7 @@ public class DefaulterList extends javax.swing.JFrame {
         tbl_defaultersList.setFuenteHead(new java.awt.Font("Yu Gothic UI Semibold", 1, 20)); // NOI18N
         tbl_defaultersList.setIntercellSpacing(new java.awt.Dimension(0, 0));
         tbl_defaultersList.setRowHeight(40);
+        tbl_defaultersList.getTableHeader().setReorderingAllowed(false);
         tbl_defaultersList.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbl_defaultersListMouseClicked(evt);

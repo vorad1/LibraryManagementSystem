@@ -16,7 +16,7 @@ import javax.swing.table.TableModel;
 
 /**
  *
- * @author Dev
+ * @author Dev Vora
  */
 public class ManageBooks extends javax.swing.JFrame {
 
@@ -50,13 +50,11 @@ public class ManageBooks extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Please enter Author Name");
             return false;
         }
-
         return true;
     }
 
     // to set the book details in the table
     public void setBookDetails() {
-
         try {
             Connection con = DBConnection.getConnection();
 
@@ -109,7 +107,6 @@ public class ManageBooks extends javax.swing.JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return isAdded;
     }
 
@@ -149,7 +146,6 @@ public class ManageBooks extends javax.swing.JFrame {
     public boolean deleteBook() {
 
         boolean isDeleted = false;
-
         bookID = Integer.parseInt(txt_BookID.getText());
 
         try {
@@ -478,6 +474,7 @@ public class ManageBooks extends javax.swing.JFrame {
         tbl_bookDetails.setFuenteHead(new java.awt.Font("Yu Gothic UI Semibold", 1, 20)); // NOI18N
         tbl_bookDetails.setIntercellSpacing(new java.awt.Dimension(0, 0));
         tbl_bookDetails.setRowHeight(40);
+        tbl_bookDetails.getTableHeader().setReorderingAllowed(false);
         tbl_bookDetails.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbl_bookDetailsMouseClicked(evt);
@@ -506,7 +503,6 @@ public class ManageBooks extends javax.swing.JFrame {
 
     private void txt_BookIDFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_BookIDFocusLost
         // to check whether username is already in use
-
     }//GEN-LAST:event_txt_BookIDFocusLost
 
     private void txt_BookIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_BookIDActionPerformed
@@ -519,7 +515,6 @@ public class ManageBooks extends javax.swing.JFrame {
 
     private void txt_BookNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_BookNameFocusLost
         // to check whether username is already in use
-
     }//GEN-LAST:event_txt_BookNameFocusLost
 
     private void txt_BookNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_BookNameActionPerformed
@@ -532,7 +527,6 @@ public class ManageBooks extends javax.swing.JFrame {
 
     private void txt_AuthorNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_AuthorNameFocusLost
         // to check whether username is already in use
-
     }//GEN-LAST:event_txt_AuthorNameFocusLost
 
     private void txt_AuthorNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_AuthorNameActionPerformed
@@ -593,7 +587,6 @@ public class ManageBooks extends javax.swing.JFrame {
         txt_BookName.setText(model.getValueAt(rowNo, 1).toString());
         txt_AuthorName.setText(model.getValueAt(rowNo, 2).toString());
         combo_department.setSelectedItem(model.getValueAt(rowNo, 3).toString());
-
     }//GEN-LAST:event_tbl_bookDetailsMouseClicked
 
     private void btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearActionPerformed
