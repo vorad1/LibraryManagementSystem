@@ -35,7 +35,7 @@ public class ReturnBook extends javax.swing.JFrame {
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setInt(1, bookId);
             pst.setInt(2, studentId);
-            pst.setString(3, "pending");
+            pst.setString(3, "issued");
 
             ResultSet rs = pst.executeQuery();
 
@@ -72,7 +72,7 @@ public class ReturnBook extends javax.swing.JFrame {
             pst.setString(1, "returned");
             pst.setInt(2, studentId);
             pst.setInt(3, bookId);
-            pst.setString(4, "pending");
+            pst.setString(4, "issued");
 
             int rowCount = pst.executeUpdate();
             if (rowCount > 0) {
