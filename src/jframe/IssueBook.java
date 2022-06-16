@@ -545,7 +545,7 @@ public class IssueBook extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_studentIdFocusLost
 
     private void btn_IssueBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_IssueBookActionPerformed
-        if (lbl_quantity.getText().equals("0")) {
+        if (lbl_quantity.getText().equals("Not available")) {
             JOptionPane.showMessageDialog(this, "Book not available");
         } else {
             if (isAlreadyIssued() == false) {
