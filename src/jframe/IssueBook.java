@@ -122,7 +122,7 @@ public class IssueBook extends javax.swing.JFrame {
             pst.setString(4, studentName);
             pst.setDate(5, sIssueDate);
             pst.setDate(6, sDueDate);
-            pst.setString(7, "pending");
+            pst.setString(7, "issued");
 
             int rowCount = pst.executeUpdate();
             if (rowCount > 0) {
@@ -165,7 +165,7 @@ public class IssueBook extends javax.swing.JFrame {
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setInt(1, bookId);
             pst.setInt(2, studentId);
-            pst.setString(3, "pending");
+            pst.setString(3, "issued");
 
             ResultSet rs = pst.executeQuery();
 

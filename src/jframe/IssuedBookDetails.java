@@ -32,17 +32,16 @@ public class IssuedBookDetails extends javax.swing.JFrame {
         try {
             Connection con = DBConnection.getConnection();
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("select * from issue_book_details where status = '" + "pending" + "'");
+            ResultSet rs = st.executeQuery("select * from issue_book_details where status = '" + "issued" + "'");
 
             while (rs.next()) {
-                String id = rs.getString("id");
                 String bookName = rs.getString("book_name");
                 String StudentName = rs.getString("student_name");
                 String issueDate = rs.getString("issue_date");
                 String dueDate = rs.getString("due_date");
                 String status = rs.getString("status");
 
-                Object[] obj = {id, bookName, StudentName, issueDate, dueDate, status};
+                Object[] obj = {bookName, StudentName, issueDate, dueDate, status};
                 model = (DefaultTableModel) tbl_issueBookDetails.getModel();
                 model.addRow(obj);
             }
@@ -162,9 +161,17 @@ public class IssuedBookDetails extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Id", "Book Name", "Student Name", "Issue Date", "Due Date", "Status"
+                "Book Name", "Student Name", "Issue Date", "Due Date", "Status"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tbl_issueBookDetails.setColorBackgoundHead(new java.awt.Color(102, 102, 255));
         tbl_issueBookDetails.setColorBordeFilas(new java.awt.Color(102, 102, 255));
         tbl_issueBookDetails.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));

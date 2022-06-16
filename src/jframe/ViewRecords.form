@@ -54,7 +54,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/AddNewBookIcons/icons8_Literature_100px_1.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="  Issue Book Details"/>
+            <Property name="text" type="java.lang.String" value="  View Records"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -252,7 +252,7 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="30" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="jLabel4" min="-2" pref="50" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -333,13 +333,12 @@
             <Component class="rojeru_san.complementos.RSTableMetro" name="tbl_recordDetails">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="6" rowCount="0">
-                    <Column editable="true" title="ID" type="java.lang.Object"/>
-                    <Column editable="true" title="Book Name" type="java.lang.Object"/>
-                    <Column editable="true" title="Student Name" type="java.lang.Object"/>
-                    <Column editable="true" title="Issue Date" type="java.lang.Object"/>
-                    <Column editable="true" title="Due Date" type="java.lang.Object"/>
-                    <Column editable="true" title="Status" type="java.lang.Object"/>
+                  <Table columnCount="5" rowCount="0">
+                    <Column editable="false" title="Book Name" type="java.lang.Object"/>
+                    <Column editable="false" title="Student Name" type="java.lang.Object"/>
+                    <Column editable="false" title="Issue Date" type="java.lang.Object"/>
+                    <Column editable="false" title="Due Date" type="java.lang.Object"/>
+                    <Column editable="false" title="Status" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="colorBackgoundHead" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -356,11 +355,6 @@
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                   <TableColumnModel selectionModel="0">
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                       <Title/>
                       <Editor/>

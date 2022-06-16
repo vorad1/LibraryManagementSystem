@@ -39,19 +39,18 @@ public class DefaulterList extends javax.swing.JFrame {
 
             PreparedStatement pst = con.prepareStatement("select * from issue_book_details where due_date < ? and status = ? ");
             pst.setDate(1, todaysDate);
-            pst.setString(2, "pending");
+            pst.setString(2, "issued");
             
             ResultSet rs = pst.executeQuery();
 
             while (rs.next()) {
-                String id = rs.getString("id");
                 String bookName = rs.getString("book_name");
                 String studentName = rs.getString("student_name");
                 String issueDate = rs.getString("issue_date");
                 String dueDate = rs.getString("due_date");
                 String status = rs.getString("status");
 
-                Object[] obj = {id, bookName, studentName, issueDate, dueDate, status};
+                Object[] obj = {bookName, studentName, issueDate, dueDate, status};
                 // using a model to set the values in the table
                 model = (DefaultTableModel) tbl_defaultersList.getModel();
                 // using the array to add data in the table
@@ -172,9 +171,17 @@ public class DefaulterList extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Book Name", "Student Name", "Issue Date", "Due Date", "Status"
+                "Book Name", "Student Name", "Issue Date", "Due Date", "Status"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tbl_defaultersList.setColorBackgoundHead(new java.awt.Color(102, 102, 255));
         tbl_defaultersList.setColorBordeFilas(new java.awt.Color(102, 102, 255));
         tbl_defaultersList.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));

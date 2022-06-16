@@ -463,7 +463,15 @@ public class ManageBooks extends javax.swing.JFrame {
             new String [] {
                 "Book ID ", "Book Name", "Author", "Department"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tbl_bookDetails.setColorBackgoundHead(new java.awt.Color(102, 102, 255));
         tbl_bookDetails.setColorBordeFilas(new java.awt.Color(102, 102, 255));
         tbl_bookDetails.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));

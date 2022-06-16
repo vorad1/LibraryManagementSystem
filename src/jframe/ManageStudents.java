@@ -372,7 +372,15 @@ public class ManageStudents extends javax.swing.JFrame {
             new String [] {
                 "Student Id", "Name", "Department"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tbl_studentDetails.setColorBackgoundHead(new java.awt.Color(102, 102, 255));
         tbl_studentDetails.setColorBordeFilas(new java.awt.Color(102, 102, 255));
         tbl_studentDetails.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));
