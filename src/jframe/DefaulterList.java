@@ -173,7 +173,15 @@ public class DefaulterList extends javax.swing.JFrame {
             new String [] {
                 "Book Name", "Student Name", "Issue Date", "Due Date", "Status"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tbl_defaultersList.setColorBackgoundHead(new java.awt.Color(102, 102, 255));
         tbl_defaultersList.setColorBordeFilas(new java.awt.Color(102, 102, 255));
         tbl_defaultersList.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));

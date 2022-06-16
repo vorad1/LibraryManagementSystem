@@ -40,14 +40,13 @@ public class ViewRecords extends javax.swing.JFrame {
             ResultSet rs = st.executeQuery("Select * from issue_book_details");
 
             while (rs.next()) {
-                String id = rs.getString("id");
                 String bookName = rs.getString("book_name");
                 String studentName = rs.getString("student_name");
                 String issueDate = rs.getString("issue_date");
                 String dueDate = rs.getString("due_date");
                 String status = rs.getString("status");
 
-                Object[] obj = {id, bookName, studentName, issueDate, dueDate, status};
+                Object[] obj = {bookName, studentName, issueDate, dueDate, status};
                 // using a model to set the values in the table
                 model = (DefaultTableModel) tbl_recordDetails.getModel();
                 // using the array to add data in the table
@@ -89,14 +88,13 @@ public class ViewRecords extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "No Record Found");
             } else {
                 while (rs.next()) {
-                    String id = rs.getString("id");
                     String bookName = rs.getString("book_name");
                     String studentName = rs.getString("student_name");
                     String issueDate = rs.getString("issue_date");
                     String dueDate = rs.getString("due_date");
                     String status = rs.getString("status");
 
-                    Object[] obj = {id, bookName, studentName, issueDate, dueDate, status};
+                    Object[] obj = {bookName, studentName, issueDate, dueDate, status};
                     // using a model to set the values in the table
                     model = (DefaultTableModel) tbl_recordDetails.getModel();
                     // using the array to add data in the table
@@ -144,7 +142,7 @@ public class ViewRecords extends javax.swing.JFrame {
         lbl_Heading.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 25)); // NOI18N
         lbl_Heading.setForeground(new java.awt.Color(255, 255, 255));
         lbl_Heading.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AddNewBookIcons/icons8_Literature_100px_1.png"))); // NOI18N
-        lbl_Heading.setText("  Issue Book Details");
+        lbl_Heading.setText("  View Records");
         panel_heading.add(lbl_Heading, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 40, 330, -1));
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
@@ -243,7 +241,7 @@ public class ViewRecords extends javax.swing.JFrame {
         btn_CloseLayout.setHorizontalGroup(
             btn_CloseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btn_CloseLayout.createSequentialGroup()
-                .addContainerGap(30, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -275,9 +273,17 @@ public class ViewRecords extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Book Name", "Student Name", "Issue Date", "Due Date", "Status"
+                "Book Name", "Student Name", "Issue Date", "Due Date", "Status"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tbl_recordDetails.setColorBackgoundHead(new java.awt.Color(102, 102, 255));
         tbl_recordDetails.setColorBordeFilas(new java.awt.Color(102, 102, 255));
         tbl_recordDetails.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));

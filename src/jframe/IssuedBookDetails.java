@@ -163,7 +163,15 @@ public class IssuedBookDetails extends javax.swing.JFrame {
             new String [] {
                 "Book Name", "Student Name", "Issue Date", "Due Date", "Status"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tbl_issueBookDetails.setColorBackgoundHead(new java.awt.Color(102, 102, 255));
         tbl_issueBookDetails.setColorBordeFilas(new java.awt.Color(102, 102, 255));
         tbl_issueBookDetails.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));

@@ -42,31 +42,6 @@ public class HomePage extends javax.swing.JFrame {
     }
 
     public void showPieChart() {
-//        //create dataset
-//        DefaultPieDataset barDataset = new DefaultPieDataset();
-//        barDataset.setValue("IPhone 5s", new Double(20));
-//        barDataset.setValue("SamSung Grand", new Double(20));
-//        barDataset.setValue("MotoG", new Double(40));
-//        barDataset.setValue("Nokia Lumia", new Double(10));
-//
-//        //create chart
-//        JFreeChart piechart = ChartFactory.createPieChart("mobile sales", barDataset, false, true, false);//explain
-//
-//        PiePlot piePlot = (PiePlot) piechart.getPlot();
-//
-//        //changing pie chart blocks colors
-//        piePlot.setSectionPaint("IPhone 5s", new Color(255, 255, 102));
-//        piePlot.setSectionPaint("SamSung Grand", new Color(102, 255, 102));
-//        piePlot.setSectionPaint("MotoG", new Color(255, 102, 153));
-//        piePlot.setSectionPaint("Nokia Lumia", new Color(0, 204, 204));
-//
-//        piePlot.setBackgroundPaint(Color.white);
-//
-//        //create chartPanel to display chart(graph)
-//        ChartPanel barChartPanel = new ChartPanel(piechart);
-//        PanelPiChart.removeAll();
-//        PanelPiChart.add(barChartPanel, BorderLayout.CENTER);
-//        PanelPiChart.validate();
 
 //create dataset
         DefaultPieDataset barDataset = new DefaultPieDataset();
@@ -610,7 +585,15 @@ public class HomePage extends javax.swing.JFrame {
             new String [] {
                 "Book ID ", "Book Name", "Author ", "Department"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tbl_bookDetails.setColorBackgoundHead(new java.awt.Color(102, 102, 255));
         tbl_bookDetails.setColorBordeFilas(new java.awt.Color(102, 102, 255));
         tbl_bookDetails.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));
@@ -638,7 +621,15 @@ public class HomePage extends javax.swing.JFrame {
             new String [] {
                 "Student ID", "Name", "Department"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tbl_studentDetails.setColorBackgoundHead(new java.awt.Color(102, 102, 255));
         tbl_studentDetails.setColorBordeFilas(new java.awt.Color(102, 102, 255));
         tbl_studentDetails.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));
