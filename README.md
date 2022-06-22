@@ -1,7 +1,15 @@
 
-# LIbrary Management System 
+# Library Management System 
 
-A library management system implement using concepts of OOP in JAVA, GUI desgined using Java Swing on Netbeans and MS SQL as database run on Xampp.
+A library management system implement using concepts of OOP in JAVA, GUI desgined using Java Swing on Netbeans and MS SQL as database run on Xampp. 
+
+Book details like authors, number of copies totally maintained by library, present available
+number of books, etc. all this information can be made readily available.
+
+Issue dates and returns of each member is maintained separately if there is any delay in
+returning the book.
+
+Admin can access defaulters list to view users that are behind on their return date.
 
 System Users/Actors
 
@@ -17,11 +25,10 @@ Functionalities
 - can checkout an item
 - can checkin an item
 - can check for defaulters 
-- can increase quantity of book
-- can decrease quantity of book
 - can add new book
 - can delete a book
 - can update book info
+- 
 ## Features
 
 - Pie Chart to show most issued book
