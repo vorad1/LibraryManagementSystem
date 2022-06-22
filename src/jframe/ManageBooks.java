@@ -390,7 +390,7 @@ public class ManageBooks extends javax.swing.JFrame {
         jPanel1.add(btn_clear, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 150, 90, 60));
 
         combo_department.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
-        combo_department.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "IT", "Construction", "Business", "English", "Other" }));
+        combo_department.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Accounting", "Project Management", "IT", "Construction", "Business", "English", "Other" }));
         combo_department.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 combo_departmentActionPerformed(evt);
