@@ -11,7 +11,7 @@ Functionalities
 
 -Librarian
 
-- can view loan history of borrowers
+- can view loan history 
 - can add borrower
 - can update personal information of borrower
 - can checkout an item
