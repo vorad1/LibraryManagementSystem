@@ -28,7 +28,8 @@ Functionalities
 - can add new book
 - can delete a book
 - can update book info
-- 
+
+
 ## Features
 
 - Pie Chart to show most issued book
@@ -72,7 +73,6 @@ Run this project
 -Click on run file.
 
 
-    
 ## Contributors
 
 - [@Dev](https://www.github.com/vorad1)
